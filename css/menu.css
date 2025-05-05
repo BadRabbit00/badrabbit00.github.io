@@ -1,0 +1,53 @@
+.menu {
+    background-color: #111; /* Темный фон меню */
+    padding: 10px 0; /* Отступы сверху и снизу */
+    position: fixed; /* Фиксированное положение */
+    width: 100%; /* Ширина на всю страницу */
+    top: 0; /* Прилипает к верху */
+    z-index: 1000; /* Высокий приоритет отображения */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+}
+
+.menu ul {
+    list-style: none; /* Убираем маркеры списка */
+    display: flex; /* Используем flexbox */
+    justify-content: center; /* Выравниваем элементы по центру */
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем отступы */
+}
+
+@media (max-width: 768px) {
+    .menu ul {
+        flex-direction: column; /* Вертикальное расположение элементов */
+        align-items: center; /* Выравнивание по центру */
+    }
+
+    .menu ul li {
+        margin: 10px 0; /* Отступы сверху и снизу */
+    }
+}
+
+.menu ul li {
+    margin: 0 20px; /* Отступы между элементами списка */
+}
+
+.menu ul li a {
+    color: #fff; /* Белый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 1.2em; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    padding: 10px 20px; /* Отступы внутри ссылок */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход цвета */
+}
+
+.menu ul li a:hover {
+    background-color: rgb(206,90,0); /* Цвет фона при наведении */
+    color: #fff; /* Белый цвет текста при наведении */
+    border-radius: 5px; /* Скругление углов */
+}
+
+.menu.scrolled {
+    background-color: rgba(17, 17, 17, 0.9); /* Цвет фона при прокрутке */
+    transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+

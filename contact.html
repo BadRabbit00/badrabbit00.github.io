@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- meta tags -->
+    <meta charset="UTF-8"> <!-- Указывает кодировку документа как UTF-8, что позволяет отображать символы большинства языков, включая русский. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Определяет область просмотра для правильного отображения на разных устройствах. -->
+    <title>Свяжитесь с нами</title> <!-- Заголовок страницы, отображаемый во вкладке браузера. -->
+    <meta name="description" content="Фитнес-клуб Джимь-Джимь - Ваш путь к здоровью и форме!"> <!-- Описание страницы для поисковых систем. -->
+    <meta name="keywords" content="фитнес, клуб, тренировки, здоровье, спорт, тренировки, тренажерный зал, групповые занятия, персональные тренировки, SPA, массаж"> <!-- Ключевые слова для поисковых систем. -->
+    <meta name="author" content="Джимь-Джимь"> <!-- Информация об авторе страницы. -->
+    <link rel="icon" href="logos/dumbbell1.svg" type="image/x-icon"> <!-- Устанавливает иконку сайта (favicon). -->
+
+    <!-- css links -->
+    <link rel="stylesheet" href="css/index.css"> <!-- Подключает основной файл стилей. -->
+    <link rel="stylesheet" href="css/footer.css"> <!-- Подключает стили для футера. -->
+    <link rel="stylesheet" href="css/header.css"> <!-- Подключает стили для хедера. -->
+    <link rel="stylesheet" href="css/buttons.css"> <!-- Подключает стили для кнопок. -->
+    <link rel="stylesheet" href="css/menu.css"> <!-- Подключает стили для меню. -->
+    <link rel="stylesheet" href="css/contact_page/why-us.css"> <!-- Подключает стили для секции "Почему мы". -->
+    <link rel="stylesheet" href="css/contact_page/contact-form.css"> <!-- Подключает стили для формы обратной связи. -->
+
+    <!-- js scripts -->
+    <script src="js/index.js"></script> <!-- Подключает основной скрипт. -->
+    <script src="js/button.js"></script> <!-- Подключает скрипт для кнопок. -->
+    <script src="js/menu.js"></script> <!-- Подключает скрипт для меню. -->
+    <script src="js/contact_page/contact-form.js"></script> <!-- Подключает скрипт для формы обратной связи. -->
+
+    <!-- other links -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Подключает шрифт Montserrat с Google Fonts. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Подключает библиотеку иконок Font Awesome. -->
+</head>
+<body>
+    <header class="header" id="#header"> <!-- Шапка сайта. -->
+        <nav class="menu"> <!-- Навигационное меню. -->
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="trainers.html">Тренеры</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="overlay" style="background-image: url('images/contact_page/header.jpg');"></div> <!-- Затемнение для фонового изображения хедера. -->
+        <div class="header-content"> <!-- Контент хедера. -->
+            <h1>Свяжитесь с нами</h1>
+            <p>Мы всегда рады помочь вам и ответить на все ваши вопросы.</p>
+            <div class="header-buttons">
+                <button class="btn-grd"> <!-- Кнопка в хедере. -->
+                    <span>Написать нам</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="why-us"> <!-- Секция "Почему мы". -->
+        <h2>Почему мы</h2>
+        <div class="why-us-content">
+            <details class="why-us-item"> <!-- Элемент details для отображения скрытого контента. -->
+                <summary>Профессиональные тренеры</summary> <!-- Заголовок элемента details. -->
+                <p>Наши тренеры имеют многолетний опыт и высокую квалификацию, чтобы помочь вам достичь ваших целей.</p> <!-- Текст, отображаемый при раскрытии элемента details. -->
+            </details>
+            <details class="why-us-item">
+                <summary>Современное оборудование</summary>
+                <p>Мы используем только самое современное и качественное оборудование для ваших тренировок.</p>
+            </details>
+            <details class="why-us-item">
+                <summary>Индивидуальный подход</summary>
+                <p>Каждый клиент для нас уникален, и мы разрабатываем индивидуальные программы тренировок и питания.</p>
+            </details>
+            <details class="why-us-item">
+                <summary>Удобное расположение</summary>
+                <p>Наш фитнес-клуб находится в центре города, что делает его доступным для всех.</p>
+            </details>
+            <details class="why-us-item">
+                <summary>Доступные цены</summary>
+                <p>Мы предлагаем конкурентоспособные цены и гибкие тарифные планы для всех наших клиентов.</p>
+            </details>
+        </div>
+    </section>
+
+<!-- внутри <head> -->
+    <link rel="stylesheet" href="css/contact_page/contact-form.css">
+    <link rel="stylesheet" href="css/contact_page/calendar.css">
+    
+    <!-- вместо старой секции .contact-form -->
+    <section class="contact-form">
+      <h2>Запишитесь на пробное занятие</h2>
+      <form id="appointmentForm">
+        <div class="form-group">
+          <label for="name">Имя</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Почта</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Номер телефона</label>
+          <input type="tel" id="phone" required>
+        </div>
+        <div class="form-group">
+          <label>Выберите дату и время</label>
+          <button type="button" id="openCalendarBtn" class="btn-grd"><span>Календарь</span></button>
+          <span id="selectedSlotDisplay" class="selected-slot"></span>
+        </div>
+        <button type="submit" id="submitBtn" class="btn-grd"><span>Отправить</span></button>
+      </form>
+    </section>
+    
+    <!-- модальное окно календаря -->
+    <div id="calendarModal" class="modal">
+      <div class="modal-content">
+        <div class="calendar-header">
+          <button id="prevMonthBtn">&lt;</button>
+          <span id="monthYear"></span>
+          <button id="nextMonthBtn">&gt;</button>
+        </div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+        <button id="confirmBtn" class="btn-grd"><span>Выбрать</span></button>
+      </div>
+    </div>
+    
+    <!-- подключаем ваш button.js и новый скрипт -->
+    <script src="js/button.js"></script>
+    <script src="js/contact_page/contact-form.js"></script>
+    
+
+
+    <!-- Футер -->
+    <footer class="footer"> <!-- Подвал сайта. -->
+        <div class="footer-container">
+            <div class="wrapper">
+  
+                <!-- Twitter -->
+                <div class="icon twitter">
+                    <div class="tooltip">Twitter</div>
+                    <span><i class="fa fa-twitter"></i></span> <!-- Иконка Twitter. -->
+                </div>
+                <!-- Instagram -->
+                <div class="icon instagram">
+                    <div class="tooltip">Instagram</div>
+                    <span><i class="fa fa-instagram"></i></span> <!-- Иконка Instagram. -->
+                </div>
+
+                <!-- YouTube -->
+                <div class="icon youtube">
+                    <div class="tooltip">YouTube</div>
+                    <span><i class="fa fa-youtube-play"></i></span> <!-- Иконка YouTube. -->
+                </div>
+            </div>
+            <!-- Текст в футере -->
+            <div class="footer-content">
+                <p>© 2021 Джимь-Джимь. Все права защищены.</p> <!-- Копирайт. -->
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

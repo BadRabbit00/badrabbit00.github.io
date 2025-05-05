@@ -1,0 +1,66 @@
+.header {
+    position: relative; /* Относительное позиционирование */
+    display: flex; /* Flexbox для выравнивания */
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: center; /* Выравнивание по горизонтали */
+    height: 100vh; /* Высота на весь экран */
+    z-index: 1; /* Порядок отображения */
+}
+
+.overlay {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0); /* Прозрачный фон */
+    background-size: cover; /* Масштабирование фона */
+    background-position: center; /* Позиционирование фона */
+}
+
+.header-content {
+    position: relative; /* Относительное позиционирование */
+    text-align: center; /* Выравнивание текста по центру */
+    z-index: 1; /* Порядок отображения */
+}
+
+.header-content h1 {
+    color: #ffffff; /* Белый цвет текста */
+    font-size: 2.5em; /* Размер шрифта */
+    margin-bottom: 20px; /* Отступ снизу */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.header-content span {
+    color: #ffffff; /* Белый цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+    z-index: 2; /* Порядок отображения */
+}
+
+.header-content p {
+    font-size: 1.2em; /* Размер шрифта */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #ffffff; /* Белый цвет текста */
+    z-index: 2; /* Порядок отображения */
+}
+
+.header-buttons {
+    margin-top: 20px; /* Отступ сверху */
+    display: flex; /* Flexbox для выравнивания */
+    justify-content: center; /* Выравнивание по горизонтали */
+    gap: 15px; /* Расстояние между кнопками */
+    z-index: 2; /* Порядок отображения */
+}
+
+.header .btn-grd {
+    position: relative; /* Относительное позиционирование */
+    background: rgb(206,90,0); /* Цвет фона */
+    border: none; /* Убираем рамку */
+    border-radius: 8px; /* Скругление углов */
+    color: white; /* Белый цвет текста */
+    cursor: pointer; /* Курсор в виде руки */
+    outline: none; /* Убираем обводку */
+    overflow: hidden; /* Скрываем содержимое, выходящее за границы */
+    padding: 1.5rem 2rem; /* Отступы внутри кнопки */
+    font-size: 1.5rem; /* Размер шрифта */
+  }

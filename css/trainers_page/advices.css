@@ -1,0 +1,73 @@
+.advices {
+    margin: 0% 2%; /* Отступы слева и справа */
+    z-index: 1; /* Порядок отображения */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    justify-content: center; /* Выравнивание по центру */
+    align-items: center; /* Выравнивание по центру */
+}
+
+.advices h2 {
+    font-size: 2em; /* Размер шрифта */
+    text-align: center; /* Выравнивание текста */
+    color: #ffffff; /* Белый цвет текста */
+    margin: 5% 0%; /* Отступы сверху и снизу */
+}
+
+.advices-list {
+    display: flex; /* Flexbox */
+    flex-direction: center; /* Выравнивание элементов */
+    justify-content: center; /* Выравнивание элементов */
+    align-items: center; /* Выравнивание элементов */
+    flex-wrap: wrap; /* Перенос на новую строку */
+}
+
+.advices-item {
+    flex: 1; /* Занимает доступное пространство */
+    width: 20%; /* Ширина элемента */
+    min-width: 300px; /* Минимальная ширина */
+    min-height: 250px; /* Минимальная высота */
+    height: 20%; /* Высота элемента */
+    margin: 1%; /* Отступы */
+    text-align: center; /* Выравнивание текста */
+    background-size: cover; /* Масштабирование фона */
+    background-position: center; /* Позиционирование фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 0.8%; /* Внутренний отступ */
+    border-radius: 10px; /* Скругление углов */
+    position: relative; /* Относительное позиционирование */
+    overflow: hidden; /* Скрываем контент */
+    transition: transform 0.3s ease; /* Анимация */
+}
+
+.advices-item:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+    z-index: 1; /* Порядок отображения */
+}
+
+.advices-item::before {
+    content: ''; /* Обязательно для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Положение сверху */
+    left: 0; /* Положение слева */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    background: rgba(0, 0, 0, 0.7); /* Затемнение */
+    z-index: 1; /* Порядок отображения */
+    box-shadow: -1rem 0 3rem #000; /* Тень */
+}
+
+.advices-item h3, .advices-item p {
+    position: relative; /* Относительное позиционирование */
+    z-index: 2; /* Порядок отображения */
+}
+
+.advices-item h3 {
+    font-size: 1.5em; /* Размер шрифта */
+    margin: 10% 0%; /* Отступы */
+}
+
+.advices-item p {
+    font-size: 1em; /* Размер шрифта */
+    margin: 10% 0%; /* Отступы */
+}

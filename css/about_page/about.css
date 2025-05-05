@@ -1,0 +1,65 @@
+.about {
+    padding: 3rem 0; /* Внутренние отступы сверху и снизу */
+    background-color: #111; /* Темный фон */
+    color: #fff; /* Белый цвет текста */
+}
+
+.about-container {
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Автоматические отступы слева и справа, центрирование */
+    padding: 2rem; /* Внутренние отступы */
+    background-color: #222; /* Более темный фон */
+    border-radius: 12px; /* Скругление углов */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Тень */
+}
+
+.about-content {
+    display: flex; /* Flexbox */
+    flex-direction: row; /* Горизонтальное направление элементов */
+    justify-content: space-between; /* Равномерное распределение элементов */
+    gap: 2rem; /* Расстояние между элементами */
+    margin-bottom: 2rem; /* Отступ снизу */
+}
+
+.about-item {
+    flex: 1; /* Занимает доступное пространство */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление элементов */
+    padding: 1rem; /* Внутренние отступы */
+    background-color: #333; /* Еще более темный фон */
+    border-radius: 8px; /* Скругление углов */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Тень */
+    opacity: 0; /* Начальная прозрачность */
+    transform: translateY(50px); /* Начальное смещение по вертикали */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Анимация */
+    position: relative; /* Относительное позиционирование */
+    will-change: transform; /* Оптимизация анимации */
+}
+
+.about-content-text {
+    color: #fff; /* Белый цвет текста */
+    line-height: 1.6; /* Межстрочный интервал */
+}
+
+.about-content-text h2 {
+    margin-bottom: 1rem; /* Отступ снизу */
+    font-size: 2rem; /* Размер шрифта */
+    color: #fff; /* Белый цвет текста */
+}
+
+.about-content-text p {
+    margin-bottom: 1rem; /* Отступ снизу */
+    font-size: 1rem; /* Размер шрифта */
+    color: #ccc; /* Светло-серый цвет текста */
+}
+
+.about-item {
+    opacity: 0; /* Начальная прозрачность */
+    transform: translateY(50px); /* Начальное смещение по вертикали */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Анимация */
+}
+
+.about-item.visible {
+    opacity: 1; /* Конечная прозрачность */
+    transform: translateY(0); /* Конечное положение по вертикали */
+}

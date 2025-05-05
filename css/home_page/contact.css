@@ -1,0 +1,42 @@
+.contact {
+    background-color: #111; /* Темный фон */
+    color: #ffffff; /* Белый цвет текста */
+    margin: 0% 2%; /* Отступы слева и справа */
+    margin-bottom: 5%; /* Отступ снизу */
+    padding: 0% 10%; /* Отступы слева и справа */
+    text-align: left; /* Выравнивание текста слева */
+}
+
+.contact h2 {
+    font-size: 2em; /* Размер шрифта */
+    margin: 5% 0%; /* Отступы сверху и снизу */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.contact p {
+    font-size: 1.2em; /* Размер шрифта */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.contact form {
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.submit-popup{
+    margin-top: 20px; /* Отступ сверху */
+    display: flex; /* Flexbox */
+    justify-content: left; /* Выравнивание по левому краю */
+    gap: 5px; /* Расстояние между элементами */
+}
+.contact .btn-grd {
+    position: relative; /* Относительное позиционирование */
+    background: rgb(206,90,0); /* Оранжевый цвет фона */
+    padding: 1rem 1.7rem; /* Внутренние отступы */
+    font-size: 1rem; /* Размер шрифта */
+    border: none; /* Убираем рамку */
+    border-radius: 8px; /* Скругление углов */
+    color: white; /* Белый цвет текста */
+    cursor: pointer; /* Курсор в виде руки */
+    outline: none; /* Убираем обводку */
+    overflow: hidden; /* Скрываем переполнение */
+  }

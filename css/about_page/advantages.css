@@ -1,0 +1,76 @@
+.advantages {
+    padding: 50px 20px; /* Внутренние отступы сверху/снизу и слева/справа */
+}
+
+.advantage-card:hover {
+    transform: translateY(-5px); /* Подъем карточки при наведении */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Тень при наведении */
+}
+
+.advantages__title {
+    font-size: 2.5em; /* Размер шрифта */
+    margin-bottom: 30px; /* Отступ снизу */
+    text-align: center; /* Выравнивание текста по центру */
+    color: #eee; /* Цвет текста */
+}
+
+.advantages__content {
+    display: flex; /* Flexbox */
+    gap: 20px; /* Расстояние между элементами */
+}
+
+.advantages__image {
+    flex: 1; /* Занимает доступное пространство */
+    overflow: hidden; /* Обрезает изображение, если оно выходит за границы блока */
+}
+
+.advantages__image img {
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    object-fit: cover; /* Заполняет блок, обрезая или искажая изображение при необходимости */
+    border-radius: 8px; /* Скругление углов */
+}
+
+.advantages__text-blocks {
+    flex: 2; /* Занимает больше места, чем изображение */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    gap: 20px; /* Расстояние между текстовыми блоками */
+}
+
+.advantages__text-block {
+    background-color: #222; /* Фон текстового блока */
+    border-radius: 8px; /* Скругление углов */
+    padding: 30px; /* Внутренние отступы */
+}
+
+.advantages__text-block--large {
+    flex: 2; /* Занимает больше места, чем маленькие блоки */
+}
+
+.advantages__text-blocks--small {
+    flex: 1; /* Занимает меньше места, чем большой блок */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    gap: 20px; /* Расстояние между маленькими блоками */
+}
+
+.advantages__text-block--small-top,
+.advantages__text-block--small-bottom {
+    flex: 1; /* Занимает одинаковое место */
+    background-color: #222; /* Фон маленьких блоков */
+    border-radius: 8px; /* Скругление углов */
+    padding: 20px; /* Внутренние отступы */
+}
+
+.advantages__text-block h3 {
+    font-size: 1.5em; /* Размер шрифта */
+    margin-bottom: 15px; /* Отступ снизу */
+    color: #eee; /* Цвет текста */
+}
+
+.advantages__text-block p {
+    font-size: 1em; /* Размер шрифта */
+    color: #ccc; /* Цвет текста */
+    line-height: 1.6; /* Межстрочный интервал */
+}

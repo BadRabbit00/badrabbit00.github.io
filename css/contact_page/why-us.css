@@ -1,0 +1,56 @@
+.why-us {
+    background-color: #111; /* Темный фон */
+    text-align: center; /* Выравнивание текста по центру */
+    margin: 0% 2%; /* Отступы слева и справа */
+}
+
+.why-us h2 {
+    font-size: 2.5em; /* Размер шрифта */
+    margin: 5% 0%; /* Отступы сверху и снизу */
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.why-us-content {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    align-items: center; /* Выравнивание элементов по центру */
+    gap: 20px; /* Расстояние между элементами */
+}
+
+.why-us-item {
+    width: 100%; /* Ширина 100% */
+    max-width: 600px; /* Максимальная ширина */
+    background-color: #222; /* Более темный фон */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 10px; /* Скругление углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    cursor: pointer; /* Курсор в виде руки */
+    transition: background-color 0.3s ease, max-height 0.3s ease; /* Анимация */
+    overflow: hidden; /* Скрываем контент */
+}
+
+.why-us-item summary {
+    font-size: 1.5em; /* Размер шрифта */
+    margin-bottom: 10px; /* Отступ снизу */
+    color: #fff; /* Белый цвет текста */
+    list-style: none; /* Убираем маркеры списка */
+}
+
+.why-us-item p {
+    font-size: 1em; /* Размер шрифта */
+    color: #ccc; /* Светло-серый цвет текста */
+    margin: 10px 0 0; /* Отступы сверху и снизу */
+}
+
+.why-us-item[open] {
+    background-color: #333; /* Еще более темный фон */
+}
+
+.why-us-item[open] p {
+    animation: fadeIn 0.3s ease; /* Анимация появления */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; } /* Начальная прозрачность */
+    to { opacity: 1; } /* Конечная прозрачность */
+}

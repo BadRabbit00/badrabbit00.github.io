@@ -1,0 +1,60 @@
+.header {
+    position: relative; /* Относительное позиционирование */
+    display: flex; /* Flexbox */
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: center; /* Выравнивание по горизонтали */
+    height: 100vh; /* Высота на весь экран */
+}
+
+.overlay {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Положение сверху */
+    left: 0; /* Положение слева */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    background: rgba(0, 0, 0, 0); /* Прозрачный фон */
+    background-size: cover; /* Масштабирование фона */
+    background-position: center; /* Позиционирование фона */
+}
+
+.header-content {
+    position: relative; /* Относительное позиционирование */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.header-content h1 {
+    color: #ffffff; /* Белый цвет текста */
+    font-size: 2.5em; /* Размер шрифта */
+    margin: 2% 0%; /* Отступы сверху и снизу */
+}
+
+.header-content h1 span {
+    color: #ffffff; /* Белый цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.header-content p {
+    font-size: 1.2em; /* Размер шрифта */
+    margin: 2% 0%; /* Отступы сверху и снизу */
+    color: #ffffff; /* Белый цвет текста */
+}
+
+.header-buttons {
+    margin: 2% 0%; /* Отступы сверху и снизу */
+    display: flex; /* Flexbox */
+    justify-content: center; /* Выравнивание по горизонтали */
+    gap: 1.5%; /* Расстояние между кнопками */
+}
+
+.header .btn-grd {
+    position: relative; /* Относительное позиционирование */
+    background: rgb(206,90,0); /* Оранжевый цвет фона */
+    padding: 1.5rem 2rem; /* Внутренние отступы */
+    font-size: 1.5rem; /* Размер шрифта */
+    border: none; /* Убираем рамку */
+    border-radius: 8px; /* Скругление углов */
+    color: white; /* Белый цвет текста */
+    cursor: pointer; /* Курсор в виде указателя */
+    outline: none; /* Убираем обводку */
+    overflow: hidden; /* Скрываем переполнение */
+  }

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title> <!-- Заголовок страницы, отображается во вкладке браузера -->
+    <meta name="description" content="Фитнес-клуб Джимь-Джимь - Ваш путь к здоровью и форме!"> <!-- Описание страницы для поисковых систем -->
+    <meta name="keywords" content="фитнес, клуб, тренировки, здоровье, спорт, тренировки, тренажерный зал, групповые занятия, персональные тренировки, SPA, массаж"> <!-- Ключевые слова для поисковых систем -->
+    <meta name="author" content="Джимь-Джимь"> <!-- Информация об авторе страницы -->
+    <link rel="icon" href="logos/dumbbell1.svg" type="image/x-icon"> <!-- Favicon (иконка сайта) -->
+    
+
+    <!--css styles-->
+    <link rel="stylesheet" href="css/index.css"> <!-- Подключение стилей для главной страницы -->
+    <link rel="stylesheet" href="css/footer.css"> <!-- Подключение стилей для футера -->
+    <link rel="stylesheet" href="css/header.css"> <!-- Подключение стилей для хедера -->
+    <link rel="stylesheet" href="css/buttons.css"> <!-- Подключение стилей для кнопок -->
+    <link rel="stylesheet" href="css/menu.css"> <!-- Подключение стилей для меню -->
+    <link rel="stylesheet" href="css/about_page/about.css"> <!-- Подключение стилей для страницы "О нас" -->
+    <link rel="stylesheet" href="css/about_page/advantages.css"> <!-- Подключение стилей для секции "Преимущества" -->
+    <link rel="stylesheet" href="css/about_page/services.css"> <!-- Подключение стилей для секции "Услуги" -->
+
+    <!--js scripts-->
+    <script src="js/button.js"></script> <!-- Подключение скрипта для кнопок -->
+    <script src="js/menu.js"></script> <!-- Подключение скрипта для меню -->
+    <script src="js/about_page/animations.js"></script> <!-- Подключение скрипта для анимаций на странице "О нас" -->
+    <script src="js/about_page/advantages.js"></script> <!-- Подключение скрипта для секции "Преимущества" -->
+    <script src="js/about_page/about.js"></script> <!-- Подключение скрипта для основной части страницы "О нас" -->
+
+    <!--other links-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Подключение шрифта Montserrat с Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Подключение иконок Font Awesome -->
+    
+
+</head>
+<body>
+    <header class="header" id="#header"> <!-- Шапка сайта -->
+        <nav class="menu"> <!-- Меню навигации -->
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="trainers.html">Тренеры</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="overlay" style="background-image: url('images/about_page/header.jpg');"></div> <!-- Затемнение фона шапки с изображением -->
+        <div class="header-content"> <!-- Контент шапки -->
+            <h1>О фитнес-клубе <span>Джимь-Джимь</span></h1> <!-- Заголовок шапки -->
+            <p>Ваш путь к здоровому образу жизни начинается здесь.</p> <!-- Подзаголовок шапки -->
+            <div class="header-buttons"> <!-- Кнопки в шапке -->
+                <button class="btn-grd">
+                    <span>Записаться</span>
+                </button>
+                <button class="btn-grd" onclick="location.href='about.html'"> <!-- Кнопка "Узнать больше" с переходом на страницу "О нас" -->
+                    <span>Узнать больше</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="about" id="about"> <!-- Секция "О нас" -->
+        <div class="about-container"> <!-- Контейнер для контента секции "О нас" -->
+            <div class="about-content"> <!-- Контентный блок секции "О нас" -->
+                <div class="about-item"> <!-- Элемент контента секции "О нас" -->
+                    <div class="about-content-text"> <!-- Текстовый контент секции "О нас" -->
+                        <h2>О нас</h2> <!-- Заголовок секции "О нас" -->
+                        <p>Фитнес-клуб Джимь-Джимь - это место, где каждый найдет свой путь к здоровью и форме. Мы предлагаем широкий спектр услуг, начиная от тренажерного зала и заканчивая SPA-процедурами. Наши профессиональные тренеры помогут вам составить индивидуальную программу тренировок, а групповые занятия подарят вам море позитива и энергии. После тренировки вы сможете расслабиться</p> <!-- Текст секции "О нас" -->
+                    </div>
+                </div>
+            </div>
+            <div class="about-content"> <!-- Контентный блок секции "О нас" -->
+                <div class="about-item"> <!-- Элемент контента секции "О нас" -->
+                    <div class="about-content-text"> <!-- Текстовый контент секции "О нас" -->
+                        <h2>Наши преимущества</h2> <!-- Заголовок секции "Наши преимущества" -->
+                        <p>Фитнес-клуб Джимь-Джимь - это место, где каждый найдет свой путь к здоровью и форме. Мы предлагаем широкий спектр услуг, начиная от тренажерного зала и заканчивая SPA-процедурами. Наши профессиональные тренеры помогут вам составить индивидуальную программу тренировок, а групповые занятия подарят вам море позитива и энергии. После тренировки вы сможете расслабиться</p> <!-- Текст секции "Наши преимущества" -->
+                    </div>
+                </div>
+            </div>
+            <div class="about-content"> <!-- Контентный блок секции "О нас" -->
+                <div class="about-item"> <!-- Элемент контента секции "О нас" -->
+                    <div class="about-content-text"> <!-- Текстовый контент секции "О нас" -->
+                        <h2>Наши услуги</h2> <!-- Заголовок секции "Наши услуги" -->
+                        <p>Фитнес-клуб Джимь-Джимь - это место, где каждый найдет свой путь к здоровью и форме. Мы предлагаем широкий спектр услуг, начиная от тренажерного зала и заканчивая SPA-процедурами. Наши профессиональные тренеры помогут вам составить индивидуальную программу тренировок, а групповые занятия подарят вам море позитива и энергии. После тренировки вы сможете расслабиться</p> <!-- Текст секции "Наши услуги" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages"> <!-- Секция "Преимущества" -->
+        <h2 class="advantages__title">Наши преимущества</h2> <!-- Заголовок секции "Преимущества" -->
+        <div class="advantages__content"> <!-- Контент секции "Преимущества" -->
+            <div class="advantages__image"> <!-- Изображение в секции "Преимущества" -->
+                <img src="images/about_page/advantages.jpg" alt="Фитнес-клуб">
+            </div>
+            <div class="advantages__text-blocks"> <!-- Текстовые блоки в секции "Преимущества" -->
+                <div class="advantages__text-block advantages__text-block--large"> <!-- Большой текстовый блок -->
+                    <h3>Современное оборудование</h3>
+                    <p>Мы предлагаем тренажеры последнего поколения от ведущих производителей, обеспечивающие максимальный комфорт и эффективность тренировок.</p>
+                </div>
+                <div class="advantages__text-blocks--small"> <!-- Контейнер для маленьких текстовых блоков -->
+                    <div class="advantages__text-block advantages__text-block--small-top"> <!-- Верхний маленький текстовый блок -->
+                        <h3>Разнообразие программ</h3>
+                        <p>У нас более 30 групповых программ в неделю: йога, пилатес, зумба, силовые тренировки, функциональный тренинг и многое другое.</p>
+                    </div>
+                    <div class="advantages__text-block advantages__text-block--small-bottom"> <!-- Нижний маленький текстовый блок -->
+                        <h3>Удобное местоположение</h3>
+                        <p>Фитнес-клуб расположен в шаговой доступности от метро [Название станции], что делает его доступным для всех.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="additional-services"> <!-- Секция "Дополнительные услуги" -->
+        <h2 class="additional-services__title">Дополнительные услуги</h2> <!-- Заголовок секции "Дополнительные услуги" -->
+        <div class="additional-services__container"> <!-- Контейнер для карточек услуг -->
+            <div class="additional-service-card"> <!-- Карточка услуги -->
+                <img src="images/about_page/spa.jpg" alt="Спа-зона">
+                <h3>Спа-зона</h3>
+                <p>Расслабьтесь после тренировки в нашей уютной спа-зоне с сауной и джакузи.</p>
+            </div>
+            <div class="additional-service-card"> <!-- Карточка услуги -->
+                <img src="images/about_page/nutrition.jpg" alt="Консультации по питанию">
+                <h3>Консультации по питанию</h3>
+                <p>Получите индивидуальные рекомендации по питанию от наших экспертов.</p>
+            </div>
+            <div class="additional-service-card"> <!-- Карточка услуги -->
+                <img src="images/about_page/personal-training.jpg" alt="Персональные тренировки">
+                <h3>Персональные тренировки</h3>
+                <p>Достигните своих целей быстрее с помощью персонального тренера.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer"> <!-- Подвал сайта -->
+        <div class="footer-container"> <!-- Контейнер подвала -->
+            <div class="wrapper">
+  
+                <!-- Twitter -->
+                <div class="icon twitter">
+                    <div class="tooltip">Twitter</div>
+                    <span><i class="fa fa-twitter"></i></span>
+                </div>
+                <!-- Instagram -->
+                <div class="icon instagram">
+                    <div class="tooltip">Instagram</div>
+                    <span><i class="fa fa-instagram"></i></span>
+                </div>
+                <!-- YouTube -->
+                <div class="icon youtube">
+                    <div class="tooltip">YouTube</div>
+                    <span><i class="fa fa-youtube-play"></i></span>
+                </div>
+            </div>
+            <!-- Текст в футере -->
+            <div class="footer-content">
+                <p>© 2021 Джимь-Джимь. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

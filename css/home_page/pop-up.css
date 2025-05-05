@@ -1,0 +1,317 @@
+.popup{
+    position: fixed; /* Фиксированное позиционирование */
+    z-index: 10001; /* Высокий z-index */
+}
+
+#upBtn {
+    position: fixed; /* Фиксированное положение */
+    bottom: 20px;   /* Отступ от нижнего края */
+    right: 20px;    /* Отступ от правого края */
+    z-index: 10001;  /* Поверх всех элементов */
+    display: flex;  /* Используем flex для центрирования иконки */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    border: none;   /* Убираем границу */
+    outline: none;  /* Убираем контур */
+    background-color: rgb(206, 90, 0); /* Оранжевый цвет фона */
+    color: white;   /* Цвет текста */
+    cursor: pointer; /* Курсор в виде указателя */
+    padding: 15px;  /* Внутренний отступ */
+    border-radius: 50%; /* Круглая форма */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    overflow: hidden; /* Скрываем переполнение для эффекта градиента */
+    transition: all 0.3s ease; /* Плавное изменение всех свойств */
+    transform: scale(0); /* Начальное состояние - кнопка скрыта (уменьшена) */
+    opacity: 0; /* Начальное состояние - прозрачная */
+}
+
+#upBtn.show {
+    transform: scale(1); /* Кнопка появляется (увеличивается) */
+    opacity: 1; /* Кнопка становится полностью видимой */
+}
+
+#upBtn:hover {
+    background-color: rgb(255, 115, 0); /* Более светлый оранжевый при наведении */
+}
+
+#upBtn img {
+    width: 29px; /* Размер иконки */
+    height: 29px; /* Высота иконки */
+    vertical-align: middle; /* Выравнивание по центру */
+    position: relative; /* Чтобы иконка была поверх градиента */
+    z-index: 2; /* Иконка выше градиента */
+}
+
+/* Эффект градиента, который следует за курсором */
+#upBtn::before {
+    --size: 0; /* Начальный размер градиента */
+    content: ''; /* Обязательное свойство для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    z-index:  index 10001; /* z-index */
+    left: var(--x); /* Положение по горизонтали */
+    top: var(--y); /* Положение по вертикали */
+    width: var(--size); /* Ширина градиента */
+    height: var(--size); /* Высота градиента */
+    background: radial-gradient(circle closest-side, rgba(255, 165, 0, 0.3), transparent); /* Более прозрачный градиент */
+    transform: translate(-50%, -50%); /* Центрирование */
+    transition: width 0.2s ease, height 0.2s ease; /* Анимация изменения размера */
+    pointer-events: none; /* Элемент не реагирует на события мыши */
+    border-radius: 50%; /* Круглая форма */
+    z-index: 1; /* Градиент под иконкой */
+}
+
+#upBtn:hover::before {
+    --size: 150px; /* Уменьшим размер градиента */
+}
+
+/* Стили для кнопки "Войти" */
+
+/* Стили для кнопки "Войти" */
+.login-btn {
+    position: fixed; /* Фиксированное положение */
+    top: 20px;      /* Отступ сверху */
+    right: 20px;    /* Отступ справа */
+    z-index: 10001;  /* Поверх всех элементов */
+    background: rgb(206, 90, 0); /* Оранжевый цвет */
+    border: none;   /* Убираем границу */
+    padding: 15px;  /* Внутренний отступ */
+    border-radius: 50%; /* Круглая форма */
+    cursor: pointer; /* Курсор в виде указателя */
+    width: 50px;    /* Ширина кнопки */
+    height: 50px;   /* Высота кнопки */
+    display: flex; /* Flexbox */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    overflow: hidden; /* Скрываем переполнение для эффекта градиента */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.login-btn:hover {
+    background-color: rgb(255, 115, 0); /* Более светлый оранжевый при наведении */
+}
+
+/* Эффект градиента, который следует за курсором */
+.login-btn::before {
+    --size: 0; /* Начальный размер градиента */
+    content: ''; /* Обязательное свойство для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    z-index:  index 10001; /* z-index */
+    left: var(--x); /* Положение по горизонтали */
+    top: var(--y); /* Положение по вертикали */
+    width: var(--size); /* Ширина градиента */
+    height: var(--size); /* Высота градиента */
+    background: radial-gradient(circle closest-side, rgba(255, 115, 0, 0.8), transparent); /* Градиент */
+    transform: translate(-50%, -50%); /* Центрирование */
+    transition: width 0.2s ease, height 0.2s ease; /* Анимация изменения размера */
+    pointer-events: none; /* Элемент не реагирует на события мыши */
+    border-radius: 50%; /* Круглая форма */
+}
+
+.login-btn:hover::before {
+    --size: 150px; /* Размер градиента при наведении */
+}
+
+/* Стили для иконки пользователя */
+.user-icon {
+    width: 30px; /* Размер иконки */
+    height: 30px; /* Высота иконки */
+    filter: brightness(1) invert(0); /* Делаем иконку белой */
+    position: relative; /* Чтобы иконка была поверх градиента */
+    z-index: index 2; /* Иконка выше градиента */
+}
+
+
+.modal-form {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index:10002; /* Поверх всех элементов */
+    left: 0; /* Положение слева */
+    top: 0; /* Положение сверху */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    overflow: auto; /* Добавляем полосы прокрутки при необходимости */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+}
+
+.modal-form-content {
+    background-color: #fff; /* Белый фон */
+    margin: 10% auto; /* Отступ сверху */
+    padding: 20px; /* Внутренний отступ */
+    border-radius: 10px; /* Скругление углов */
+    width: 300px; /* Ширина */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    position: relative; /* Относительное позиционирование */
+    box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+}
+
+.close {
+    position: absolute; /* Абсолютное позиционирование */
+    right: 15px; /* Отступ справа */
+    top: 15px; /* Отступ сверху */
+    font-size: 24px; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде указателя */
+    color: #333; /* Цвет текста */
+}
+
+.close:hover {
+    color: #000; /* Цвет при наведении */
+}
+
+.modal-form h2 {
+    text-align: center; /* Выравнивание текста по центру */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+}
+.modal-form p {
+    text-align: center; /* Выравнивание текста по центру */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+}
+
+.modal-form label {
+    display: block; /* Блочный элемент */
+    margin-bottom: 5px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+}
+
+.modal-form input {
+    width: calc(100% - 20px); /* Ширина с учётом padding */
+    padding: 10px; /* Внутренний отступ */
+    margin-bottom: 15px; /* Отступ снизу */
+    border: 1px solid #ccc; /* Рамка */
+    border-radius: 5px; /* Скругление углов */
+    box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+}
+
+.modal-form button {
+    width: 100%; /* Ширина 100% */
+    padding: 10px; /* Внутренний отступ */
+    background-color: rgb(206, 90, 0); /* Оранжевый цвет */
+    color: #fff; /* Белый цвет текста */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Скругление углов */
+    cursor: pointer; /* Курсор в виде указателя */
+    box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+}
+
+.modal-form button:hover {
+    background-color: rgb(255, 115, 0); /* Более светлый оранжевый при наведении */
+}
+
+/* Контейнер для изображения и формы */
+.modal-container {
+    display: flex; /* Flexbox */
+    gap: 10px; /* Расстояние между изображением и формой */
+}
+
+.modal-form-content label {
+    display: block; /* Блочный элемент */
+    margin-bottom: 5px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+}
+
+.modal-form-content input,
+.modal-form-content textarea {
+    width: 100%; /* Ширина 100% */
+    padding: 10px; /* Внутренний отступ */
+    margin-bottom: 15px; /* Отступ снизу */
+    border: 1px solid #ccc; /* Рамка */
+    border-radius: 5px; /* Скругление углов */
+    box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+}
+
+.modal-form-content textarea {
+    resize: vertical; /* Разрешаем изменение высоты textarea */
+}
+
+.modal-form-content button {
+    width: 100%; /* Ширина 100% */
+    padding: 10px; /* Внутренний отступ */
+    background-color: rgb(206, 90, 0); /* Оранжевый цвет */
+    color: #fff; /* Белый цвет текста */
+    border: none; /* Убираем рамку */
+    border-radius: 5px; /* Скругление углов */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+.modal-form-content button:hover {
+    background-color: rgb(255, 115, 0); /* Более светлый оранжевый при наведении */
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index: 10001; /* Поверх всех элементов */
+    left: 0; /* Положение слева */
+    top: 0; /* Положение сверху */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    overflow: auto; /* Добавляем полосы прокрутки при необходимости */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+}
+
+.modal-content {
+    background-color: #fff; /* Белый фон */
+    margin: 10% auto; /* Отступ сверху */
+    padding: 20px; /* Внутренний отступ */
+    border-radius: 10px; /* Скругление углов */
+    width: 100%; /* Ширина 100% */
+    max-width: 400px; /* Максимальная ширина */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    position: relative; /* Относительное позиционирование */
+    box-sizing: content-box; /* Учитываем padding и border в общей ширине */
+}
+
+
+.close:hover {
+    color: #000; /* Цвет при наведении */
+}
+
+.modal-content h2 {
+    text-align: center; /* Выравнивание текста по центру */
+    margin-bottom: 20px; /* Отступ снизу */
+    margin-top: 20px;
+    color: #333; /* Цвет текста */
+}
+
+/* Стили для формы */
+.form-group {
+    margin-bottom: 15px; /* Отступ снизу */
+}
+
+.form-group label {
+    display: block; /* Блочный элемент */
+    margin-bottom: 5px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.form-group input {
+    width: 100%; /* Ширина 100% */
+    padding: 10px; /* Внутренний отступ */
+    border: 1px solid #ccc; /* Рамка */
+    border-radius: 5px; /* Скругление углов */
+    box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+    font-size: 16px; /* Размер шрифта */
+}
+
+.form-group input:focus {
+    border-color: rgb(206, 90, 0); /* Цвет рамки при фокусе */
+    outline: none; /* Убираем обводку */
+}
+
+/* Стили для кнопки */
+.popup .btn-grd {
+    position: relative; /* Относительное позиционирование */
+    background: rgb(206,90,0); /* Оранжевый цвет */
+    padding: 1rem 1.5rem; /* Внутренний отступ */
+    margin: auto; /* Автоматические отступы */
+    font-size: 1rem; /* Размер шрифта */
+    border: none; /* Убираем рамку */
+    border-radius: 8px; /* Скругление углов */
+    color: white; /* Белый цвет текста */
+    cursor: pointer; /* Курсор в виде указателя */
+    outline: none; /* Убираем обводку */
+    overflow: hidden; /* Скрываем переполнение */
+  }

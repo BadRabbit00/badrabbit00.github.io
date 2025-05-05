@@ -1,0 +1,112 @@
+/* Основные стили для timeline */
+.schedule{
+    position: relative; /* Относительное позиционирование */
+    margin: 0% 2%; /* Отступы слева и справа */
+    z-index: 1; /* Порядок отображения */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+}
+
+.schedule h2 {
+    display: block; /* Блочный элемент */
+    font-size: 2em; /* Размер шрифта */
+    margin: 5% 0%; /* Отступы сверху и снизу */
+    font-weight: bold; /* Жирный шрифт */
+    unicode-bidi: isolate; /* Изоляция текста */
+    text-align: center; /* Выравнивание текста */
+}
+
+.timeline {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    position: relative; /* Относительное позиционирование */
+    justify-content: center; /* Выравнивание по центру */
+    align-items: center; /* Выравнивание по центру */
+}
+
+.timeline-item {
+    display: flex; /* Flexbox */
+    align-items: center; /* Выравнивание по центру */
+    padding: 2% 0%; /* Отступы сверху и снизу */
+    width: 72vw; /* Ширина элемента */
+    position: relative; /* Относительное позиционирование */
+    opacity: 0; /* Начальная прозрачность */
+    transform: translateY(50px); /* Начальное смещение */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Анимация */
+}
+
+.timeline-item.visible {
+    opacity: 1; /* Показываем элемент */
+    transform: translateY(0); /* Возвращаем на место */
+}
+
+.timeline-content {
+    background-color: #333; /* Темный фон */
+    padding: 2%; /* Внутренние отступы */
+    border-radius: 10px; /* Скругление углов */
+    flex: 1; /* Занимает доступное пространство */
+    text-align: left; /* Выравнивание текста слева */
+    transition: transform 0.5s ease; /* Анимация */
+    position: relative; /* Относительное позиционирование */
+}
+
+.timeline-content h3 {
+    margin-top: 0; /* Убираем верхний отступ */
+    font-size: 1.5em; /* Размер шрифта */
+}
+
+.timeline-content p {
+    margin: 1% 1%; /* Отступы */
+    font-size: 1em; /* Размер шрифта */
+}
+
+/* Стили для кружков с цифрами */
+.timeline-number {
+    background-color: #ff6f00; /* Оранжевый фон */
+    color: #fff; /* Белый цвет текста */
+    width: 40px; /* Ширина */
+    height: 40px; /* Высота */
+    border-radius: 50%; /* Круглая форма */
+    display: flex; /* Flexbox */
+    align-items: center; /* Выравнивание по центру */
+    justify-content: center; /* Выравнивание по центру */
+    font-size: 1.2em; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 50%; /* Положение сверху */
+    left: 50%; /* Положение слева */
+    transform: translate(-50%, -50%); /* Центрирование */
+    z-index: 2; /* Порядок отображения */
+    animation-duration: 0.5s; /* Длительность анимации */
+    animation-fill-mode: forwards; /* Сохраняем конечное состояние анимации */
+}
+
+.timeline-item.visible:nth-child(odd) .timeline-number {
+    animation-name: moveNumberOdd; /* Анимация для нечетных элементов */
+}
+
+.timeline-item.visible:nth-child(even) .timeline-number {
+    animation-name: moveNumberEven; /* Анимация для четных элементов */
+}
+
+@keyframes moveNumberOdd {
+  0% {
+    left: 50%; /* Начальное положение слева */
+    transform: translate(-50%, -50%); /* Начальное положение */
+  }
+  100% {
+    left: -1em; /* Конечное положение слева */
+    transform: translateY(-50%); /* Конечное положение */
+  }
+}
+
+@keyframes moveNumberEven {
+    0% {
+      left: 50%; /* Начальное положение слева */
+      transform: translate(-50%, -50%); /* Начальное положение */
+    }
+    100% {
+      left: calc(100% + 1em); /* Конечное положение слева */
+      transform: translate(-100%, -50%); /* Конечное положение */
+    }
+  }

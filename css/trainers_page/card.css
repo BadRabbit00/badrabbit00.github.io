@@ -1,0 +1,85 @@
+.card-container {
+    margin: 0 2%; /* Отступы слева и справа */
+    max-width: 100%; /* Максимальная ширина */
+    display: flex; /* Flexbox */
+    justify-content: center; /* Выравнивание по центру */
+    align-items: center; /* Выравнивание по центру */
+    gap: 20px; /* Расстояние между карточками */
+    flex-wrap: wrap; /* Перенос на новую строку */
+    margin-bottom: 2%; /* Отступ снизу */
+}
+
+.card-container h2 {
+    width: 100%; /* Ширина 100% */
+    text-align: center; /* Выравнивание текста по центру */
+    margin: 5% 0%; /* Отступы сверху и снизу */
+}
+
+.card {
+    perspective: 1000px; /* Перспектива для 3D эффекта */
+    width: 200px;  /* Ширина карточки */
+    height: 350px; /* Высота карточки */
+    margin: 10px;  /* Отступы вокруг карточки */
+}
+
+.card-inner {
+    position: relative; /* Относительное позиционирование */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    transform-style: preserve-3d; /* Сохраняем 3D пространство */
+    transition: transform 0.6s; /* Анимация переворота */
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg); /* Переворот при наведении */
+}
+
+.card-front, .card-back {
+    position: absolute; /* Абсолютное позиционирование */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+    backface-visibility: hidden; /* Скрываем заднюю сторону */
+    border: 1px solid #fff; /* Белая рамка */
+    border-radius: 10px; /* Скругление углов */
+    overflow: hidden; /* Скрываем контент, выходящий за границы */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    justify-content: flex-start; /* Выравнивание по верхнему краю */
+    align-items: center; /* Выравнивание по центру */
+    padding: 10px; /* Внутренний отступ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+.card-front img {
+    width: 175px; /* Ширина изображения */
+    height: 175px; /* Высота изображения */
+    object-fit: cover; /* Масштабирование изображения */
+    border-radius: 10px; /* Скругление углов */
+    margin: 2% 2%; /* Отступы */
+}
+
+.card-back {
+    transform: rotateY(180deg); /* Переворот задней стороны */
+    background-color: #111; /* Темный фон */
+    color: #fff; /* Белый цвет текста */
+}
+
+.card-front h3,
+.card-front p {
+    text-align: center; /* Выравнивание текста по центру */
+    margin: 5px 0; /* Отступы сверху и снизу */
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 150px;  /* Ширина карточки */
+        height: 300px; /* Высота карточки */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100px; /* Ширина карточки */
+        height: 250px; /* Высота карточки */
+    }
+}

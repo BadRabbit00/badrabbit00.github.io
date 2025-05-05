@@ -1,0 +1,52 @@
+.additional-services {
+    padding: 50px 20px; /* Внутренние отступы сверху/снизу и слева/справа */
+    background-color: #222; /* Фон для нового раздела */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.additional-services__title {
+    font-size: 2.5em; /* Размер шрифта */
+    margin-bottom: 30px; /* Отступ снизу */
+    color: #eee; /* Цвет текста */
+}
+
+.additional-services__container {
+    display: flex; /* Flexbox */
+    justify-content: space-around; /* Равномерное распределение элементов */
+    flex-wrap: wrap; /* Перенос на новую строку при необходимости */
+}
+
+.additional-service-card {
+    width: 300px; /* Ширина карточки */
+    background-color: #333; /* Фон для карточек */
+    border-radius: 8px; /* Скругление углов */
+    padding: 20px; /* Внутренние отступы */
+    margin: 20px; /* Внешние отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при наведении */
+}
+
+.additional-service-card:hover {
+    transform: translateY(-5px); /* Подъем карточки при наведении */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Усиление тени при наведении */
+}
+
+.additional-service-card img {
+    width: 100%; /* Ширина изображения 100% */
+    height: 200px; /* Высота изображения */
+    object-fit: cover; /* Масштабирование изображения с сохранением пропорций */
+    border-radius: 8px; /* Скругление углов */
+    margin-bottom: 15px; /* Отступ снизу */
+}
+
+.additional-service-card h3 {
+    font-size: 1.5em; /* Размер шрифта */
+    margin-bottom: 10px; /* Отступ снизу */
+    color: #eee; /* Цвет текста */
+}
+
+.additional-service-card p {
+    font-size: 1em; /* Размер шрифта */
+    color: #ccc; /* Цвет текста */
+    line-height: 1.6; /* Межстрочный интервал */
+}

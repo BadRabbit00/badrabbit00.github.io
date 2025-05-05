@@ -1,0 +1,141 @@
+.footer-container {
+    background-color: #17141d; /* Фон футера */
+    display: flex; /* Flexbox */
+    justify-content: space-between; /* Выравнивание контента по краям */
+    align-items: center; /* Выравнивание элементов по центру */
+    flex-wrap: wrap; /* Перенос на новую строку при необходимости */
+    width: 100%; /* Ширина 100% */
+    margin: 0 auto; /* Автоматические отступы */
+}
+
+.wrapper {
+    display: flex; /* Flexbox */
+    align-items: center; /* Выравнивание иконок по центру */
+    flex-wrap: wrap; /* Перенос на новую строку при необходимости */
+    gap: 10px; /* Расстояние между иконками */
+}
+
+.footer-content {
+    text-align: center; /* Выравнивание текста по центру */
+    flex: 1; /* Занимает доступное пространство */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    justify-content: center; /* Центрирование текста */
+}
+
+.footer-content p{
+    text-align: center; /* Выравнивание текста по центру */
+    color: slategray; /* Цвет текста */
+    margin: 2% 0%; /* Отступы сверху и снизу */
+}
+
+.footer {
+    padding: 0px 0; /* Отступы футера */
+}
+
+.wrapper {
+    display: flex; /* Flexbox */
+    justify-content: flex-start; /* Выравнивание по левой стороне */
+    align-items: center; /* Центрирование по вертикали */
+    flex-wrap: wrap; /* Перенос на новую строку при необходимости */
+    padding: 15px; /* Внутренний отступ */
+}
+
+.wrapper .icon {
+    position: relative; /* Относительное позиционирование */
+    background: #ffffff; /* Фон иконок */
+    border-radius: 50%; /* Круглые иконки */
+    padding: 10px; /* Уменьшенный отступ */
+    margin: 8px; /* Уменьшенное расстояние между иконками */
+    width: 20px; /* Уменьшенный размер */
+    height: 20px; /* Уменьшенный размер */
+    font-size: 15px; /* Уменьшенный размер шрифта */
+    display: flex; /* Flexbox */
+    justify-content: center; /* Центрирование иконок */
+    align-items: center; /* Центрирование иконок */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Тень */
+    cursor: pointer; /* Курсор в виде руки */
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Анимация */
+}
+
+.wrapper .icon span i {
+    color: #000; /* Черный цвет для иконок */
+    font-size: 15px; /* Размер иконок */
+}
+
+.wrapper .tooltip {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Положение сверху */
+    font-size: 9px; /* Уменьшенный размер шрифта */
+    background: #fff; /* Фон подсказки */
+    color: #000; /* Цвет текста подсказки */
+    padding: 5px 8px; /* Внутренний отступ */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Тень */
+    opacity: 0; /* Скрыта по умолчанию */
+    pointer-events: none; /* Не реагирует на мышь */
+    border-radius: 4px; /* Скругление углов */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Анимация */
+}
+
+.wrapper .tooltip::before {
+    position: absolute; /* Абсолютное позиционирование */
+    content: ""; /* Пустой контент */
+    height: 8px; /* Высота стрелки */
+    width: 8px; /* Ширина стрелки */
+    background: #fff; /* Фон стрелки */
+    bottom: -3px; /* Положение снизу */
+    left: 50%; /* Положение слева */
+    transform: translate(-50%) rotate(45deg); /* Поворот стрелки */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Анимация */
+}
+
+.wrapper .icon:hover .tooltip {
+    top: -40px; /* Уменьшенное смещение */
+    opacity: 1; /* Показываем подсказку */
+    visibility: visible; /* Делаем видимой */
+    pointer-events: auto; /* Реагирует на мышь */
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1); /* Тень при наведении */
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+    background: #3b5999; /* Цвет Facebook */
+    color: #fff; /* Белый цвет текста */
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+    background: #46c1f6; /* Цвет Twitter */
+    color: #fff; /* Белый цвет текста */
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+    background: #e1306c; /* Цвет Instagram */
+    color: #fff; /* Белый цвет текста */
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+    background: #333333; /* Цвет GitHub */
+    color: #fff; /* Белый цвет текста */
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+    background: #e92828; /* Цвет YouTube */
+    color: #fff; /* Белый цвет текста */
+}
+
+.wrapper .icon:hover span i {
+    color: #fff; /* Белый цвет при наведении */
+}

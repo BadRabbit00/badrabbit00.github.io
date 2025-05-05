@@ -1,0 +1,34 @@
+.btn-grd {
+  position: relative; /* Относительное позиционирование */
+  background: rgb(206,90,0); /* Цвет фона кнопки */
+  padding: 1.5rem 3rem; /* Отступы внутри кнопки */
+  font-size: 1.5rem; /* Размер шрифта */
+  border: none; /* Убираем рамку */
+  border-radius: 8px; /* Скругление углов */
+  color: white; /* Белый цвет текста */
+  cursor: pointer; /* Курсор в виде руки */
+  outline: none; /* Убираем обводку */
+  overflow: hidden; /* Скрываем контент, выходящий за границы */
+}
+
+.btn-grd span {
+  position: relative; /* Относительное позиционирование */
+  pointer-events: none; /* Элемент не реагирует на события мыши */
+}
+
+.btn-grd::before {
+  --size: 0; /* Начальный размер псевдоэлемента */
+  content: ''; /* Обязательное свойство для псевдоэлемента */
+  position: absolute; /* Абсолютное позиционирование */
+  left: var(--x); /* Положение по горизонтали (CSS переменная) */
+  top: var(--y); /* Положение по вертикали (CSS переменная) */
+  width: var(--size); /* Ширина псевдоэлемента (CSS переменная) */
+  height: var(--size); /* Высота псевдоэлемента (CSS переменная) */
+  background: radial-gradient(circle closest-side, rgb(255, 115, 0), transparent); /* Радиальный градиент */
+  transform: translate(-50%, -50%); /* Центрируем псевдоэлемент */
+  transition: width 0.2s ease, height 0.2s ease; /* Анимация изменения размера */
+}
+
+.btn-grd:hover::before {
+  --size: 150px; /* Размер псевдоэлемента при наведении */
+}

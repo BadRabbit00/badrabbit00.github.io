@@ -1,0 +1,82 @@
+.reviews{
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    justify-content: center; /* Выравнивание по центру */
+    align-items: center; /* Выравнивание по центру */
+    margin: 0% 2%; /* Отступы слева и справа */
+}
+
+.reviews h2 {
+    font-size: 2em; /* Размер шрифта */
+    text-align: center; /* Выравнивание текста */
+    color: #ffffff; /* Белый цвет текста */
+    margin: 5% 0%; /* Отступы сверху и снизу */
+}
+.card_container {
+    position: relative; /* Относительное позиционирование */
+    width: 100%; /* Ширина 100% */
+    top: 6%; /* Отступ сверху */
+    display: flex; /* Flexbox */
+    justify-content: center; /* Выравнивание по центру */
+    flex-wrap: wrap; /* Перенос на новую строку */
+  }
+  
+  .card {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Вертикальное направление */
+    height: 300px; /* Высота */
+    width: 10%; /* Ширина */
+    min-width: 150px; /* Минимальная ширина */
+    background-color: #17141d; /* Фон */
+    border-radius: 10px; /* Скругление углов */
+    margin: 1%; /* Отступы */
+    transition: 0.4s ease-out; /* Анимация */
+    position: relative; /* Относительное позиционирование */
+    padding: 20px; /* Внутренние отступы */
+  }
+  
+  .card:hover {
+    transform: translateY(-20px); /* Подъем при наведении */
+    transition: 0.4s ease-out; /* Анимация */
+  }
+  
+  .title {
+    color: white; /* Белый цвет текста */
+    font-weight: 300; /* Толщина шрифта */
+    margin-bottom: 10%; /* Отступ снизу */
+  }
+  
+  .bar {
+    position: relative; /* Относительное позиционирование */
+    height: 5px; /* Высота */
+    width: 100%; /* Ширина 100% */
+    margin-bottom: 20px; /* Отступ снизу */
+  }
+  
+  .emptybar {
+    background-color: #2e3033; /* Фон пустой полосы */
+    width: 100%; /* Ширина 100% */
+    height: 100%; /* Высота 100% */
+  }
+  
+  .filledbar {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Положение сверху */
+    z-index: 3; /* Порядок отображения */
+    width: 0; /* Начальная ширина */
+    height: 100%; /* Высота 100% */
+    background: rgb(0,154,217); /* Цвет */
+    background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%); /* Градиент */
+    transition: width 0.6s ease-out; /* Анимация */
+  }
+  
+  .card:hover .filledbar {
+    width: 100%; /* Ширина при наведении */
+    transition: width 0.6s ease-out; /* Анимация */
+  }
+  
+  .review-text {
+    color: white; /* Белый цвет текста */
+    font-size: 0.9em; /* Размер шрифта */
+    line-height: 1.4; /* Высота строки */
+  }

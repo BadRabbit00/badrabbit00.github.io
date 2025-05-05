@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    font-family: 'Montserrat';
+    background-color: #111; /* Основной цвет фона */
+    color: #fff;
+    position: relative;
+    z-index: 1; /* Убедитесь, что контент находится поверх фона */ 
+}
+
+/*body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../logos/dumbbell1.svg');
+    background-repeat: repeat;
+    background-size: 100px; /* Размер логотипа */
+    /*filter: brightness(0) invert(1); /* Делает логотип белым */
+   /* opacity: 0.2; /* Прозрачность логотипа */
+    /*z-index: -1; /* Помещаем фон под основной контент */
+/*}*/

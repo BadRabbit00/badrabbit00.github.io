@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!--meta tags-->
+    <meta charset="UTF-8"> <!-- Указывает кодировку документа как UTF-8 для поддержки различных символов, включая русский. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Настройка viewport для адаптивного отображения на разных устройствах. -->
+    <title>Тренеры</title> <!-- Заголовок страницы, отображается во вкладке браузера. -->
+    <meta name="description" content="Фитнес-клуб Джимь-Джимь - Ваш путь к здоровью и форме!"> <!-- Описание страницы для поисковых систем. -->
+    <meta name="keywords" content="фитнес, клуб, тренировки, здоровье, спорт, тренировки, тренажерный зал, групповые занятия, персональные тренировки, SPA, массаж"> <!-- Ключевые слова для поисковых систем. -->
+    <meta name="author" content="Джимь-Джимь"> <!-- Информация об авторе страницы. -->
+    <link rel="icon" href="logos/dumbbell1.svg" type="image/x-icon"> <!-- Устанавливает иконку сайта (favicon). -->
+
+    <!--css links-->
+    <link rel="stylesheet" href="css/index.css"> <!-- Подключает основной файл стилей. -->
+    <link rel="stylesheet" href="css/footer.css"> <!-- Подключает стили для футера. -->
+    <link rel="stylesheet" href="css/header.css"> <!-- Подключает стили для хедера. -->
+    <link rel="stylesheet" href="css/buttons.css"> <!-- Подключает стили для кнопок. -->
+    <link rel="stylesheet" href="css/menu.css"> <!-- Подключает стили для меню. -->
+    <link rel="stylesheet" href="css/trainers_page/card.css"> <!-- Подключает стили для карточек тренеров. -->
+    <link rel="stylesheet" href="css/trainers_page/advices.css"> <!-- Подключает стили для секции советов от тренеров. -->
+    
+    <!--js scripts-->
+    <script src="js/index.js"></script> <!-- Подключает основной скрипт. -->
+    <script src="js/button.js"></script> <!-- Подключает скрипт для кнопок. -->
+    <script src="js/menu.js"></script> <!-- Подключает скрипт для меню. -->
+    <script src="js/trainers_page/advices.js"></script> <!-- Подключает скрипт для секции советов от тренеров. -->
+    <script src="js/trainers_page/card.js"></script> <!-- Подключает скрипт для карточек тренеров. -->
+
+
+    <!--other links-->
+    <link rel="stylesheet" href="logos/dumbbell1.svg"><!--dumpbell--> <!-- Подключение SVG-файла как CSS. Это может быть ошибкой, если файл содержит только SVG-код. -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Подключает шрифт Montserrat с Google Fonts. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Подключает библиотеку иконок Font Awesome. -->
+
+
+</head>
+<body>
+    <header class="header" id="#header"> <!-- Шапка сайта. Атрибут id="#header" некорректен, символ # не нужен. -->
+        <nav class="menu"> <!-- Навигационное меню. -->
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="trainers.html">Тренеры</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="overlay" style="background-image: url('images/trainers_page/header.jpg');"></div> <!-- Затемнение для фонового изображения хедера. -->
+        <div class="header-content"> <!-- Контент хедера. -->
+            <h1>Наши тренеры: Команда профессионалов</h1>
+            <p>Доверьтесь опытным профессионалам, которые помогут вам достичь ваших фитнес-целей.</p>
+            <div class="header-buttons"> <!-- Кнопки в хедере. -->
+                <button class="btn-grd">
+                <span>Узнать больше</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="card-container"> <!-- Секция с карточками тренеров. -->
+        <h2>Наши тренеры: Команда профессионалов</h2>
+        <div class="card"> <!-- Карточка тренера. -->
+            <div class="card-inner"> <!-- Внутренний контейнер карточки для реализации эффекта переворота. -->
+                <div class="card-front"> <!-- Лицевая сторона карточки. -->
+                    <img src="images/trainers_page/trainer1.jpg" alt="Тренер 1">
+                    <h3>Иван Иванов</h3>
+                    <p>Персональный тренер</p>
+                </div>
+                <div class="card-back"> <!-- Обратная сторона карточки. -->
+                    <h3>Иван Иванов</h3>
+                    <p>Иван имеет более 10 лет опыта в фитнесе и помогает клиентам достигать их целей с индивидуальным подходом.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card"> <!-- Карточка тренера. -->
+            <div class="card-inner"> <!-- Внутренний контейнер карточки для реализации эффекта переворота. -->
+                <div class="card-front"> <!-- Лицевая сторона карточки. -->
+                    <img src="images/trainers_page/trainer2.jpg" alt="Тренер 2">
+                    <h3>Пидорас</h3>
+                    <p>Инструктор групповых занятий</p>
+                </div>
+                <div class="card-back"> <!-- Обратная сторона карточки. -->
+                    <h3>Пидорас</h3>
+                    <p>Анна — энергичный инструктор, специализирующаяся на йоге и пилатесе. Её занятия помогут вам достичь гармонии тела и духа.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card"> <!-- Карточка тренера. -->
+            <div class="card-inner"> <!-- Внутренний контейнер карточки для реализации эффекта переворота. -->
+                <div class="card-front"> <!-- Лицевая сторона карточки. -->
+                    <img src="images/trainers_page/trainer3.jpg" alt="Тренер 3">
+                    <h3>Алексей Кузнецов</h3>
+                    <p>Тренер по боксу</p>
+                </div>
+                <div class="card-back"> <!-- Обратная сторона карточки. -->
+                    <h3>Алексей Кузнецов</h3>
+                    <p>Алексей — чемпион по боксу и профессиональный тренер. Он поможет улучшить технику и достичь новых высот.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card"> <!-- Карточка тренера. -->
+            <div class="card-inner"> <!-- Внутренний контейнер карточки для реализации эффекта переворота. -->
+                <div class="card-front"> <!-- Лицевая сторона карточки. -->
+                    <img src="images/trainers_page/trainer4.jpg" alt="Тренер 4">
+                    <h3>Мария Васильева</h3>
+                    <p>Тренер по плаванию</p>
+                </div>
+                <div class="card-back"> <!-- Обратная сторона карточки. -->
+                    <h3>Мария Васильева</h3>
+                    <p>Мария — профессиональная пловчиха с многолетним опытом. Её методики помогут улучшить вашу технику и результаты.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card"> <!-- Карточка тренера. -->
+            <div class="card-inner"> <!-- Внутренний контейнер карточки для реализации эффекта переворота. -->
+                <div class="card-front"> <!-- Лицевая сторона карточки. -->
+                    <img src="images/trainers_page/trainer5.jpg" alt="Тренер 5">
+                    <h3>Дмитрий Петров</h3>
+                    <p>Инструктор по кроссфиту</p>
+                </div>
+                <div class="card-back"> <!-- Обратная сторона карточки. -->
+                    <h3>Дмитрий Петров</h3>
+                    <p>Дмитрий — сертифицированный тренер по кроссфиту. Его программы разработаны для максимальной эффективности.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advices" id="#about"> <!-- Секция с советами от тренеров. Атрибут id="#about" некорректен, символ # не нужен. -->
+        <h2>Советы от тренеров</h2>
+        <div class="advices-list"> <!-- Контейнер для списка советов. -->
+            <div class="advices-item" style="background-image: url('images/trainers_page/advice1.jpg');"> <!-- Элемент списка советов. -->
+                <h3>Совет по тренировкам</h3>
+                <p>Начинайте с разминки, чтобы подготовить мышцы и суставы к нагрузке и избежать травм.</p>
+            </div>
+            <div class="advices-item" style="background-image: url('images/trainers_page/advice2.jpg');"> <!-- Элемент списка советов. -->
+                <h3>Совет по питанию</h3>
+                <p>Питайтесь сбалансированно, включайте в рацион белки, углеводы и полезные жиры для оптимального восстановления.</p>
+            </div>
+            <div class="advices-item" style="background-image: url('images/trainers_page/advice3.jpg');"> <!-- Элемент списка советов. -->
+                <h3>Совет по мотивации</h3>
+                <p>Ставьте реалистичные цели и отслеживайте прогресс, чтобы сохранять мотивацию и достигать новых высот.</p>
+            </div>
+            <div class="advices-item" style="background-image: url('images/trainers_page/advice4.jpg');"> <!-- Элемент списка советов. -->
+                <h3>Совет по восстановлению</h3>
+                <p>Не забывайте про отдых и восстановление, они так же важны, как и сами тренировки.</p>
+            </div>
+            <div class="advices-item" style="background-image: url('images/trainers_page/advice5.jpg');"> <!-- Элемент списка советов. -->
+                <h3>Совет по технике</h3>
+                <p>Следите за техникой выполнения упражнений, это поможет избежать травм и повысить эффективность тренировок.</p>
+            </div>
+            <div class="advices-item" style="background-image: url('images/trainers_page/advice6.jpg');"> <!-- Элемент списка советов. -->
+                <h3>Совет по гидратации</h3>
+                <p>Пейте достаточно воды до, во время и после тренировки, чтобы поддерживать водный баланс организма.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer"> <!-- Подвал сайта. -->
+        <div class="footer-container">
+            <div class="wrapper">
+  
+                <!-- Twitter -->
+                <div class="icon twitter">
+                    <div class="tooltip">Twitter</div>
+                    <span><i class="fa fa-twitter"></i></span> <!-- Иконка Twitter. -->
+                </div>
+                <!-- Instagram -->
+                <div class="icon instagram">
+                    <div class="tooltip">Instagram</div>
+                    <span><i class="fa fa-instagram"></i></span> <!-- Иконка Instagram. -->
+                </div>
+
+                <!-- YouTube -->
+                <div class="icon youtube">
+                    <div class="tooltip">YouTube</div>
+                    <span><i class="fa fa-youtube-play"></i></span> <!-- Иконка YouTube. -->
+                </div>
+            </div>
+            <!-- Текст в футере -->
+            <div class="footer-content">
+                <p>© 2021 Джимь-Джимь. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

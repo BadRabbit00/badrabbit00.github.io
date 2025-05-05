@@ -1,0 +1,67 @@
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1200px;
+  }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: black;
+  }
+  .calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: .5rem;
+    margin-bottom: 1rem;
+  }
+  .calendar-grid > div {
+    text-align: center;
+    color: black;
+  }
+  .day-cell {
+    border: 1px solid #ccc;
+    padding: .5rem;
+    border-radius: 4px;
+  }
+  .day-cell .date-number {
+    font-weight: bold;
+    margin-bottom: .5rem;
+  }
+  .slot {
+    cursor: pointer;
+    padding: .25rem;
+    margin-bottom: .25rem;
+    border-radius: 4px;
+    font-size: .9rem;
+  }
+  .slot:hover {
+    background: #eee;
+  }
+  .slot.occupied {
+    background: red;
+    color: #fff;
+    cursor: not-allowed;
+  }
+  .slot.selected {
+    background: #007bff;
+    color: #fff;
+  }
+  

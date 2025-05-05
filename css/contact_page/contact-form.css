@@ -1,0 +1,32 @@
+.contact-form {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+  }
+  .contact-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: black;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group label {
+    margin-bottom: .5rem;
+    font-weight: bold;
+    color: black;
+  }
+  .form-group input {
+    padding: .5rem;
+    font-size: 1rem;
+  }
+  .selected-slot {
+    display: inline-block;
+    margin-left: 1rem;
+    font-weight: bold;
+  }
+  
