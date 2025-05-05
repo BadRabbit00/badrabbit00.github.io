@@ -1,260 +1,278 @@
+/* Контейнер формы записи */
 .booking-container {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2, h3 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; /* Учитывает padding и border в ширине */
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-
-.date-selection-container {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Расстояние между кнопкой и текстом даты */
-  flex-wrap: wrap; /* Перенос на новую строку при необходимости */
-}
-
-#selectedSlotDisplay {
-  font-style: italic;
-  color: #007bff;
-  font-weight: bold;
-}
-
-/* Стили для кнопок (основные стили должны быть в buttons.css) */
-/* Добавим базовые стили, если buttons.css/js нет */
-.button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-  text-align: center;
-}
-.button:hover {
-  background-color: #0056b3;
-}
-#submitBtn {
-  width: 100%;
-  margin-top: 10px; /* Отступ сверху для кнопки отправки */
-}
-.button-secondary {
-  padding: 5px 10px;
-  background-color: #6c757d;
-}
-.button-secondary:hover {
-  background-color: #5a6268;
-}
-
-
-/* --- Стили Модального Окна --- */
-.modal {
-  display: none; /* Скрыто по умолчанию */
-  position: fixed; /* Фиксированное позиционирование */
-  z-index: 1000; /* Поверх всего остального */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* Прокрутка, если контент не влезает */
-  background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
-  /* Центрирование содержимого */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  border-radius: 8px;
-  width: 90%; /* Ширина на мобильных */
-  max-width: 700px; /* Максимальная ширина */
-  position: relative; /* Для позиционирования кнопки закрытия */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.close-btn {
-  color: #aaa;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
-}
-
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-#monthYear {
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center;
-  flex-grow: 1; /* Занимает доступное пространство */
-}
-
-.calendar-weekdays,
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 колонок */
-  gap: 5px; /* Промежутки между ячейками */
-  margin-bottom: 10px;
-}
-.calendar-weekdays div {
-  text-align: center;
-  font-weight: bold;
-  color: #555;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #eee;
-}
-
-.calendar-grid {
-  min-height: 300px; /* Примерная минимальная высота */
-}
-
-.empty-cell {
-  visibility: hidden; /* Пустые ячейки невидимы */
-}
-
-.day-cell {
-  border: 1px solid #eee;
-  min-height: 90px; /* Минимальная высота ячейки дня */
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  position: relative; /* Для позиционирования номера дня */
-}
-.past-date {
-   background-color: #f8f9fa; /* Серый фон для прошедших дат */
-}
-
-
-.date-number {
-  text-align: right;
-  padding: 3px 5px;
-  font-size: 0.8em;
-  color: #888;
-  position: absolute;
-  top: 2px;
-  right: 2px;
-}
-.day-cell:not(.past-date) .date-number {
-  color: #333; /* Цвет номера для активных дней */
-}
-
-
-.slot {
-  flex-grow: 1; /* Слоты занимают доступное место */
-  border-top: 1px dashed #f0f0f0;
-  margin: 2px 4px; /* Небольшие отступы */
-  padding: 4px;
-  font-size: 0.75em; /* Уменьшенный шрифт для слотов */
-  border-radius: 3px;
-  cursor: pointer;
-  text-align: center;
-  background-color: #f9f9f9;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-  display: flex; /* Центрирование текста в слоте */
-  justify-content: center;
-  align-items: center;
-}
-.day-cell:not(.past-date) .slot:hover {
-   background-color: #e9f5ff; /* Голубоватый фон при наведении */
-   border-color: #cce7ff;
-}
-
-/* Выбранный слот */
-.slot.selected {
-  background-color: #a0d0ff;
-  border: 1px solid #007bff;
-  color: #fff;
-  font-weight: bold;
-}
-
-/* Занятый слот или слот в прошлом */
-.slot.occupied {
-  background-color: #ffdddd !important; /* Важно, чтобы перебить hover */
-  color: #dc3545 !important;
-  cursor: not-allowed;
-  text-decoration: line-through;
-  font-style: italic;
-  pointer-events: none; /* Отключаем события мыши */
-  border-color: #f5c6cb !important;
-}
-/* Стили для прошедших дат (чтобы не были красными, а серыми) */
-.past-date .slot {
-   background-color: #e9ecef !important;
-   color: #6c757d !important;
-   text-decoration: none; /* Убираем зачеркивание у прошлых */
-   border-color: #dee2e6 !important;
-}
-
-.modal-footer {
-  margin-top: 20px;
-  text-align: right;
-}
-
-/* Адаптивность (пример) */
-@media (max-width: 768px) {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Заголовки */
+  h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Группы полей */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: rgb(206, 90, 0);
+    box-shadow: 0 0 5px rgba(206, 90, 0, 0.5);
+  }
+  
+  /* Контейнер выбора даты */
+  .date-selection-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  /* Отображение выбранного слота */
+  #selectedSlotDisplay {
+    color: rgb(206, 90, 0);
+    font-weight: bold;
+  }
+  
+  /* Базовые стили для кнопок */
+  /* Если у вас есть buttons.css, они должны переопределить это */
+  .booking-container .btn-grd {
+    position: relative;
+    background: rgb(206, 90, 0);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+  .booking-container .btn-grd:hover {
+    background: rgba(206, 90, 0, 0.9);
+  }
+  
+  /* Модальное окно */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal .btn-grd {
+    background: rgb(206, 90, 0);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+  }
+  .modal .btn-grd:hover {
+    background: rgba(206, 90, 0, 0.9);
+  }
+  
   .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Кнопка закрыть */
+  .close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* Заголовок календаря */
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgb(206, 90, 0);
+  }
+  #monthYear {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    color: rgb(206, 90, 0);
+  }
+  
+  /* Дни недели и сетка */
+  .calendar-weekdays,
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .calendar-weekdays div {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+  }
+  .calendar-grid {
+    min-height: 300px;
+  }
+  
+  /* Пустые ячейки */
+  .empty-cell {
+    visibility: hidden;
+  }
+  
+  /* Ячейки дней */
+  .day-cell {
+    border: 1px solid #eee;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    position: relative;
+  }
+  .past-date {
+    background-color: #f8f9fa;
+  }
+  
+  /* Номер дня */
+  .date-number {
+    text-align: right;
+    padding: 3px 5px;
+    font-size: 0.8em;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #333;
+  }
+  
+  /* Слоты */
+  .slot {
+    flex-grow: 1;
+    border-top: 1px dashed #f0f0f0;
+    margin: 2px 4px;
+    padding: 4px;
+    font-size: 0.75em;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Hover для свободного слота */
+  .day-cell:not(.past-date) .slot:hover {
+    background-color: rgba(206, 90, 0, 0.1);
+    border-color:    rgba(206, 90, 0, 0.3);
+  }
+  
+  /* Выбранный слот */
+  .slot.selected {
+    background-color: rgb(206, 90, 0);
+    border: 1px solid rgb(206, 90, 0);
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Занятый слот */
+  .slot.occupied {
+    background-color: #ffdddd !important;
+    color: #dc3545 !important;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    pointer-events: none;
+    border-color: #f5c6cb !important;
+  }
+  
+  /* Прошедшие слоты (внутри прошедшей даты) */
+  .past-date .slot {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    text-decoration: none;
+    border-color: #dee2e6 !important;
+  }
+  
+  /* Подтверждённый текст */
+  .confirmed-text {
+    margin: 0.5rem 0;
+    font-weight: bold;
+    color: rgb(206, 90, 0);
+  }
+  
+  /* Подвал модалки */
+  .modal-footer {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  /* Адаптив */
+  @media (max-width: 768px) {
+    .modal-content {
       width: 95%;
       padding: 15px;
-  }
-  .slot {
+    }
+    .slot {
       font-size: 0.7em;
       padding: 3px;
-  }
-   .day-cell {
+    }
+    .day-cell {
       min-height: 80px;
+    }
   }
-}
+  

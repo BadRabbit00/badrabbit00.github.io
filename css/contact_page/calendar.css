@@ -61,7 +61,7 @@
     cursor: not-allowed;
   }
   .slot.selected {
-    background: #007bff;
+    background: rgb(206, 90, 0);
     color: #fff;
   }
   
