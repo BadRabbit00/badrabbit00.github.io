@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. DOM-элементы
+  // --- DOM Элементы ---
   const openCalBtn = document.getElementById('openCalendarBtn');
   const modal = document.getElementById('calendarModal');
+  const closeModalBtn = modal?.querySelector('.close-btn'); // Используем optional chaining на случай отсутствия modal
   const prevBtn = document.getElementById('prevMonthBtn');
   const nextBtn = document.getElementById('nextMonthBtn');
   const monthYearEl = document.getElementById('monthYear');
@@ -9,166 +10,158 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmBtn = document.getElementById('confirmBtn');
   const slotDisplay = document.getElementById('selectedSlotDisplay');
   const form = document.getElementById('appointmentForm');
-  const closeModalBtn = document.querySelector('.close-btn'); // Предполагаем, что есть кнопка закрытия модального окна
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
 
-  // 2. Состояние
-  let currentDate = new Date(); // для навигации по месяцам
-  let confirmedSlotForForm = null; // { date, time, label } - Слот, подтвержденный для формы
+  // Проверка наличия ключевых элементов
+  if (!openCalBtn || !modal || !closeModalBtn || !prevBtn || !nextBtn || !monthYearEl || !grid || !confirmBtn || !slotDisplay || !form || !nameInput || !emailInput || !phoneInput) {
+      console.error("Ошибка инициализации: Один или несколько DOM элементов не найдены.");
+      // Можно показать сообщение пользователю или просто остановить скрипт
+      alert("Произошла ошибка при загрузке формы. Пожалуйста, обновите страницу или обратитесь к администратору.");
+      return; // Останавливаем выполнение скрипта
+  }
 
-  // 3. Работа с localStorage
+  // --- Состояние ---
+  let currentDate = new Date(); // Текущая дата для навигации по календарю
+  let pendingSlotInModal = null; // Временный выбор слота ВНУТРИ модального окна {date, time, label, element}
+  let confirmedSlotForForm = null; // Финальный выбор слота, подтвержденный кнопкой "Выбрать"
+
+  // --- Работа с localStorage ---
   const LS = {
+      // Получаем массив занятых слотов {date: 'YYYY-MM-DD', time: 'morning' | 'day' | 'evening'}
       getOccupied: () => JSON.parse(localStorage.getItem('occupiedSlots') || '[]'),
-      setOccupied: arr => localStorage.setItem('occupiedSlots', JSON.stringify(arr)),
-      getPending: () => JSON.parse(localStorage.getItem('pendingSlot') || 'null'),
-      setPending: slot => localStorage.setItem('pendingSlot', JSON.stringify(slot)),
-      clearPending: () => localStorage.removeItem('pendingSlot'),
+      // Сохраняем массив занятых слотов
+      setOccupied: (arr) => localStorage.setItem('occupiedSlots', JSON.stringify(arr)),
+      // Получаем массив всех записей
       getAppointments: () => JSON.parse(localStorage.getItem('appointments') || '[]'),
-      addAppointment: appt => {
+      // Добавляем новую запись
+      addAppointment: (appt) => {
           const arr = LS.getAppointments();
           arr.push(appt);
           localStorage.setItem('appointments', JSON.stringify(arr));
       }
+      // pendingSlot теперь хранится в переменной JS, а не в localStorage
   };
 
-  // --- Вспомогательная функция для форматирования даты ---
-  function formatDate(date) {
+  // --- Вспомогательные функции ---
+  const formatDate = (date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       return `${year}-${month}-${day}`;
-  }
+  };
 
-  // 4. Рендер календаря
+  // --- Рендер Календаря ---
   function renderCalendar() {
-      grid.innerHTML = '';
+      grid.innerHTML = ''; // Очищаем сетку
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
-      // Устанавливаем название месяца и года
       monthYearEl.textContent = `${currentDate.toLocaleString('ru-RU', { month: 'long' })} ${year}`;
 
-      // Добавляем заголовки дней недели
-      ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].forEach(d => {
-          const el = document.createElement('div');
-          el.className = 'weekday-header'; // Добавьте стиль для этого класса в CSS
-          el.textContent = d;
-          grid.appendChild(el);
-      });
-
-      // Определяем первый день месяца и количество дней
       const firstDayOfMonth = new Date(year, month, 1);
       const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      // Корректируем номер первого дня недели (0=Пн, 6=Вс)
-      let firstDayWeekday = firstDayOfMonth.getDay(); // 0=Вс, 1=Пн, ...
+      let firstDayWeekday = firstDayOfMonth.getDay(); // 0=Вс, 1=Пн...
       firstDayWeekday = (firstDayWeekday === 0) ? 6 : firstDayWeekday - 1; // Преобразуем к 0=Пн, 6=Вс
 
       // Добавляем пустые ячейки для дней предыдущего месяца
       for (let i = 0; i < firstDayWeekday; i++) {
-          const emptyCell = document.createElement('div');
-          emptyCell.className = 'empty-cell'; // Добавьте стиль для этого класса в CSS
-          grid.appendChild(emptyCell);
+          grid.appendChild(document.createElement('div')).classList.add('empty-cell');
       }
 
-      const occupied = LS.getOccupied();
-      const pending = LS.getPending();
-      const today = new Date(); // Сегодняшняя дата для сравнения
-      today.setHours(0, 0, 0, 0); // Убираем время для корректного сравнения дат
+      const occupiedSlots = LS.getOccupied();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Сравниваем только даты
 
+      // Создаем ячейки для каждого дня месяца
       for (let day = 1; day <= daysInMonth; day++) {
-          const currentDayDate = new Date(year, month, day);
-          const dateStr = formatDate(currentDayDate); // YYYY-MM-DD
           const cell = document.createElement('div');
-          cell.className = 'day-cell';
+          cell.classList.add('day-cell');
+          const currentDayDate = new Date(year, month, day);
+          currentDayDate.setHours(0, 0, 0, 0); // Сравниваем только даты
+          const dateStr = formatDate(currentDayDate);
+          const isPastDate = currentDayDate < today;
 
-           // Проверка, является ли дата прошедшей
-           const isPastDate = currentDayDate < today;
-           if (isPastDate) {
-              cell.classList.add('past-date'); // Добавьте стиль для этого класса в CSS
-           }
+          if (isPastDate) {
+              cell.classList.add('past-date');
+          }
 
           // Добавляем номер дня
           const numEl = document.createElement('div');
-          numEl.className = 'date-number';
+          numEl.classList.add('date-number');
           numEl.textContent = day;
           cell.appendChild(numEl);
 
-          // Создаём три слота для времени
-          [['morning', 'Утро (8-12)'],
-           ['day', 'День (12-18)'],
-           ['evening', 'Вечер (18-22)']].forEach(([type, label]) => {
-              const slot = document.createElement('div');
-              slot.className = 'slot';
-              slot.dataset.date = dateStr;
-              slot.dataset.time = type;
-              slot.dataset.label = label; // Сохраняем читабельный label
+          // Создаем слоты времени
+          [['morning', 'Утро (8-12)'], ['day', 'День (12-18)'], ['evening', 'Вечер (18-22)']]
+              .forEach(([timeType, label]) => {
+                  const slot = document.createElement('div');
+                  slot.classList.add('slot');
+                  slot.dataset.date = dateStr;
+                  slot.dataset.time = timeType;
+                  slot.dataset.label = label;
 
-              // Проверяем, занят ли слот
-              const isOccupied = occupied.some(o => o.date === dateStr && o.time === type);
+                  const isOccupied = occupiedSlots.some(o => o.date === dateStr && o.time === timeType);
 
-              if (isPastDate || isOccupied) {
-                  slot.classList.add('occupied');
-                  slot.textContent = isPastDate ? 'Прошло' : 'Занято';
-                  slot.style.pointerEvents = 'none'; // Делаем некликабельным
-               } else {
-                  slot.textContent = label;
-
-                  // Подсвечиваем временно выбранный слот (pending)
-                  if (pending && pending.date === dateStr && pending.time === type) {
-                      slot.classList.add('selected');
+                  if (isPastDate || isOccupied) {
+                      slot.classList.add('occupied');
+                      slot.textContent = isOccupied ? 'Занято' : 'Прошло';
+                  } else {
+                      slot.textContent = label;
+                      // Обработчик клика для доступных слотов
+                      slot.addEventListener('click', () => handleSlotClick(slot, dateStr, timeType, label));
                   }
 
-                  // Добавляем обработчик клика для выбора слота
-                  slot.addEventListener('click', () => {
-                      // Снимаем выделение с предыдущего выбранного слота
-                      const previouslySelected = grid.querySelector('.slot.selected');
-                      if (previouslySelected) {
-                          previouslySelected.classList.remove('selected');
-                      }
+                  // Если этот слот был выбран как pending до перерисовки, выделяем его
+                  if (pendingSlotInModal && pendingSlotInModal.date === dateStr && pendingSlotInModal.time === timeType) {
+                       slot.classList.add('selected');
+                       pendingSlotInModal.element = slot; // Обновляем ссылку на элемент
+                  }
 
-                      // Выделяем текущий слот
-                      slot.classList.add('selected');
-
-                      // Сохраняем ВРЕМЕННЫЙ выбор в localStorage (pending)
-                      const currentPendingSlot = { date: dateStr, time: type, label: label };
-                      LS.setPending(currentPendingSlot);
-                      console.log('Pending selection:', currentPendingSlot);
-                  });
-              }
-              cell.appendChild(slot);
-          });
+                  cell.appendChild(slot);
+              });
           grid.appendChild(cell);
       }
   }
 
-  // 5. Открытие/закрытие модального окна
-  openCalBtn.addEventListener('click', () => {
-      // При открытии проверяем, есть ли подтвержденный слот для формы
-      // Если есть, то нужно его отобразить как pending при рендере
-      if(confirmedSlotForForm) {
-          LS.setPending(confirmedSlotForForm);
-      } else {
-          // Если подтвержденного нет, можно очистить и pending на всякий случай
-           LS.clearPending();
+  // --- Обработчики Событий ---
+
+  // Клик по слоту времени
+  function handleSlotClick(slotElement, date, time, label) {
+      // Снимаем выделение с предыдущего pending слота, если он был
+      if (pendingSlotInModal && pendingSlotInModal.element) {
+          pendingSlotInModal.element.classList.remove('selected');
       }
+
+      // Устанавливаем новый pending слот
+      slotElement.classList.add('selected');
+      pendingSlotInModal = { date, time, label, element: slotElement };
+      console.log("Pending slot selected:", pendingSlotInModal);
+
+      // Активируем кнопку "Выбрать", если она была неактивна (опционально)
+      confirmBtn.disabled = false;
+  }
+
+  // Открытие модального окна
+  openCalBtn.addEventListener('click', () => {
+      console.log("Opening modal. Current confirmed slot:", confirmedSlotForForm);
+      // Если уже есть подтвержденный слот, делаем его pending при открытии
+      pendingSlotInModal = confirmedSlotForForm ? { ...confirmedSlotForForm, element: null } : null;
+       console.log("Pending slot on open:", pendingSlotInModal);
+      confirmBtn.disabled = !pendingSlotInModal; // Кнопка активна, только если есть что подтверждать
       modal.style.display = 'flex';
-      renderCalendar();
+      renderCalendar(); // Рендерим календарь после установки pending
   });
 
-  function closeModal() {
+  // Закрытие модального окна
+  const closeModal = () => {
       modal.style.display = 'none';
-      LS.clearPending(); // Очищаем временный выбор при закрытии без подтверждения
-      // Если confirmedSlotForForm не пуст, то он остается - пользователь может передумать
-      // и снова открыть календарь, чтобы выбрать другую дату.
-      // confirmedSlotForForm сбрасывается только при успешной отправке формы.
-  }
-
-  if (closeModalBtn) {
-      closeModalBtn.addEventListener('click', closeModal);
-  }
-
-  // Закрытие по клику вне модального окна
-  window.addEventListener('click', e => {
-      if (e.target === modal) {
+      pendingSlotInModal = null; // Сбрасываем временный выбор при закрытии
+      console.log("Modal closed. Pending slot cleared.");
+  };
+  closeModalBtn.addEventListener('click', closeModal);
+  window.addEventListener('click', (event) => { // Закрытие по клику вне окна
+      if (event.target === modal) {
           closeModal();
       }
   });
@@ -176,98 +169,128 @@ document.addEventListener('DOMContentLoaded', () => {
   // Навигация по месяцам
   prevBtn.addEventListener('click', () => {
       currentDate.setMonth(currentDate.getMonth() - 1);
-      LS.clearPending(); // Очищаем pending при смене месяца
+      pendingSlotInModal = null; // Сбрасываем выбор при смене месяца
+      confirmBtn.disabled = true; // Деактивируем кнопку подтверждения
       renderCalendar();
   });
-
   nextBtn.addEventListener('click', () => {
       currentDate.setMonth(currentDate.getMonth() + 1);
-      LS.clearPending(); // Очищаем pending при смене месяца
+      pendingSlotInModal = null;
+      confirmBtn.disabled = true;
       renderCalendar();
   });
 
-  // 6. Подтверждение выбора в модальном окне (Кнопка "Выбрать")
+  // Подтверждение выбора в модальном окне (Кнопка "Выбрать")
   confirmBtn.addEventListener('click', () => {
-      const pending = LS.getPending();
-
-      if (!pending) {
-          alert('Пожалуйста, выберите дату и время.');
+      if (!pendingSlotInModal) {
+          alert('Пожалуйста, выберите слот времени.');
           return;
       }
 
-      // Дополнительная проверка: не заняли ли слот, пока модальное окно было открыто?
+      // Дополнительная проверка, не заняли ли слот, пока окно было открыто
       const occupied = LS.getOccupied();
-      if (occupied.some(o => o.date === pending.date && o.time === pending.time)) {
-          alert('Увы, этот слот только что заняли. Пожалуйста, выберите другой.');
-          LS.clearPending(); // Очищаем неактуальный pending
-          renderCalendar(); // Перерисовываем календарь, чтобы показать занятость
+      if (occupied.some(o => o.date === pendingSlotInModal.date && o.time === pendingSlotInModal.time)) {
+          alert('К сожалению, этот слот только что заняли. Пожалуйста, выберите другой.');
+          pendingSlotInModal = null; // Сбрасываем неактуальный выбор
+          confirmBtn.disabled = true;
+          renderCalendar(); // Перерисовываем, чтобы показать актуальную занятость
           return;
       }
 
-      // Если все хорошо, сохраняем выбор для основной формы
-      confirmedSlotForForm = pending; // Записываем в переменную JS
-      slotDisplay.textContent = `Выбрано: ${pending.date} ${pending.label}`; // Отображаем рядом с кнопкой
-      LS.clearPending(); // Очищаем временный выбор из localStorage
-      modal.style.display = 'none'; // Закрываем модальное окно
-      console.log('Confirmed slot for form:', confirmedSlotForForm);
+      // Фиксируем выбор
+      confirmedSlotForForm = {
+          date: pendingSlotInModal.date,
+          time: pendingSlotInModal.time,
+          label: pendingSlotInModal.label
+      };
+      console.log("Slot confirmed for form:", confirmedSlotForForm);
+
+      // Отображаем выбор рядом с кнопкой открытия календаря
+      slotDisplay.textContent = `Выбрано: ${confirmedSlotForForm.date}, ${confirmedSlotForForm.label}`;
+      closeModal(); // Закрываем модальное окно
   });
 
-  // 7. Отправка основной формы (Кнопка 2)
-  form.addEventListener('submit', e => {
-      e.preventDefault(); // Предотвращаем стандартную отправку формы
+  // Отправка формы (Кнопка "Отправить")
+  form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Предотвращаем стандартную отправку
+      console.log("Form submit triggered. Checking confirmed slot:", confirmedSlotForForm);
 
-      // Проверяем, был ли слот подтвержден из модального окна
+      // 1. Проверка, выбран ли слот времени
       if (!confirmedSlotForForm) {
-          alert('Пожалуйста, выберите дату и время для записи, нажав на кнопку выбора даты.');
-          return; // Прерываем отправку
+          alert('Пожалуйста, выберите дату и время записи.');
+          openCalBtn.focus(); // Фокус на кнопку выбора даты
+          return;
       }
 
-      // Собираем данные из формы
-      const nameInput = document.getElementById('name');
-      const emailInput = document.getElementById('email');
-      const phoneInput = document.getElementById('phone');
+      // 2. Проверка заполненности полей
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const phone = phoneInput.value.trim();
 
-      const appointmentData = {
-          name: nameInput.value.trim(),
-          email: emailInput.value.trim(),
-          phone: phoneInput.value.trim(),
-          date: confirmedSlotForForm.date, // Берем из подтвержденного слота
-          time: confirmedSlotForForm.time,  // Берем из подтвержденного слота
-          label: confirmedSlotForForm.label // Можно тоже сохранить для информации
-      };
+      if (!name || !email || !phone) {
+          alert('Пожалуйста, заполните все поля: Имя, Почта и Номер телефона.');
+          // Фокус на первое незаполненное поле (улучшение)
+          if (!name) nameInput.focus();
+          else if (!email) emailInput.focus();
+          else phoneInput.focus();
+          return;
+      }
 
-      // Валидация полей формы (простая)
-      if (!appointmentData.name || !appointmentData.email || !appointmentData.phone) {
-           alert('Пожалуйста, заполните все поля формы: Имя, Почта, Номер телефона.');
+      // 3. (Опционально) Валидация формата email и телефона
+      // Простая проверка email
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+           alert('Пожалуйста, введите корректный адрес электронной почты.');
+           emailInput.focus();
            return;
       }
+      // Можно добавить более сложную валидацию телефона, если нужно
 
-      // --- Вот здесь добавляем слот в occupied ---
-      const occupied = LS.getOccupied();
-      occupied.push({ date: confirmedSlotForForm.date, time: confirmedSlotForForm.time });
-      LS.setOccupied(occupied); // Сохраняем обновленный список занятых слотов
+      // --- Все проверки пройдены ---
 
-      // Сохраняем полную информацию о записи
-      LS.addAppointment(appointmentData);
+      // 4. Формирование данных для сохранения
+      const appointmentData = {
+          name,
+          email,
+          phone,
+          date: confirmedSlotForForm.date,
+          time: confirmedSlotForForm.time,
+          label: confirmedSlotForForm.label,
+          timestamp: new Date().toISOString() // Добавляем метку времени создания записи
+      };
 
-      console.log('Appointment saved:', appointmentData);
-      console.log('Updated occupied slots:', LS.getOccupied());
+      // 5. Сохранение данных
+      try {
+          // Добавляем слот в список занятых
+          const occupied = LS.getOccupied();
+          occupied.push({ date: confirmedSlotForForm.date, time: confirmedSlotForForm.time });
+          LS.setOccupied(occupied);
 
-      // Сброс формы и состояния
-      form.reset(); // Очищаем поля формы
-      slotDisplay.textContent = ''; // Очищаем текст рядом с кнопкой
-      confirmedSlotForForm = null; // Сбрасываем подтвержденный слот
-      LS.clearPending(); // На всякий случай очищаем и pending
+          // Добавляем полную запись
+          LS.addAppointment(appointmentData);
 
-      // Сообщение пользователю
-      alert('Ваша запись успешно сохранена! Слот теперь отмечен как занятый.');
+          console.log("Appointment saved:", appointmentData);
 
-      // Перерендер календаря не нужен немедленно, он обновится при следующем открытии модалки
+          // 6. Сброс формы и состояния
+          form.reset(); // Очистка полей формы
+          slotDisplay.textContent = ''; // Очистка отображения даты
+          const previouslyConfirmed = confirmedSlotForForm; // Для лога
+          confirmedSlotForForm = null; // Сброс выбранного слота
+          pendingSlotInModal = null; // Сброс pending на всякий случай
+          console.log('Form state reset. Previously confirmed slot:', previouslyConfirmed);
+
+
+          // 7. Сообщение пользователю
+          alert('Ваша запись успешно сохранена!');
+
+      } catch (error) {
+          console.error("Ошибка при сохранении данных в localStorage:", error);
+          alert("Произошла ошибка при сохранении записи. Попробуйте еще раз или обратитесь к администратору.");
+      }
   });
 
   // --- Инициализация ---
-  // При загрузке страницы можно очистить pending, если он остался с прошлого раза
-  LS.clearPending();
-  // Также можно проверить, есть ли сохраненный confirmedSlotForForm (маловероятно, но возможно)
-  // и отобразить его, но обычно форма должна быть чистой при загрузке.
-});
+  confirmBtn.disabled = true; // Изначально кнопка "Выбрать" неактивна
+  console.log("Form script initialized successfully.");
+  // Первый рендер не нужен, календарь рендерится при открытии модалки
+
+}); // Конец DOMContentLoaded

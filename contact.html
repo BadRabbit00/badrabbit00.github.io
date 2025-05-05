@@ -81,50 +81,52 @@
     <link rel="stylesheet" href="css/contact_page/contact-form.css">
     <link rel="stylesheet" href="css/contact_page/calendar.css">
     
-    <!-- вместо старой секции .contact-form -->
-    <section class="contact-form">
-      <h2>Запишитесь на пробное занятие</h2>
-      <form id="appointmentForm">
-        <div class="form-group">
-          <label for="name">Имя</label>
-          <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Почта</label>
-          <input type="email" id="email" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Номер телефона</label>
-          <input type="tel" id="phone" required>
-        </div>
-        <div class="form-group">
-          <label>Выберите дату и время</label>
-          <button type="button" id="openCalendarBtn" class="btn-grd"><span>Календарь</span></button>
-          <span id="selectedSlotDisplay" class="selected-slot"></span>
-        </div>
-        <button type="submit" id="submitBtn" class="btn-grd"><span>Отправить</span></button>
-      </form>
+    <section id="booking-section" class="booking-container">
+        <h2>Запись на прием</h2>
+        <form id="appointmentForm" novalidate>
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Почта:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Номер телефона:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                 </div>
+
+            <div class="form-group date-selection-container">
+                <button type="button" id="openCalendarBtn" class="button">Выбрать дату и время</button>
+                <span id="selectedSlotDisplay"></span>
+            </div>
+
+            <button type="submit" id="submitBtn" class="button">Отправить</button>
+        </form>
     </section>
-    
-    <!-- модальное окно календаря -->
+
     <div id="calendarModal" class="modal">
-      <div class="modal-content">
-        <div class="calendar-header">
-          <button id="prevMonthBtn">&lt;</button>
-          <span id="monthYear"></span>
-          <button id="nextMonthBtn">&gt;</button>
+        <div class="modal-content">
+            <span class="close-btn" title="Закрыть">&times;</span>
+            <h3>Выберите дату и время</h3>
+            <div class="calendar-header">
+                <button id="prevMonthBtn" class="button-secondary">&lt;</button>
+                <span id="monthYear"></span>
+                <button id="nextMonthBtn" class="button-secondary">&gt;</button>
+            </div>
+            <div class="calendar-weekdays">
+                 <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+            </div>
+            <div id="calendarGrid" class="calendar-grid">
+                </div>
+            <div class="modal-footer">
+                <button id="confirmBtn" class="button">Выбрать</button>
+            </div>
         </div>
-        <div id="calendarGrid" class="calendar-grid"></div>
-        <button id="confirmBtn" class="btn-grd"><span>Выбрать</span></button>
-      </div>
     </div>
+    <script src="contact-form.js"></script>
     
-    <!-- подключаем ваш button.js и новый скрипт -->
-    <script src="js/button.js"></script>
-    <script src="js/contact_page/contact-form.js"></script>
-    
-
-
     <!-- Футер -->
     <footer class="footer"> <!-- Подвал сайта. -->
         <div class="footer-container">
