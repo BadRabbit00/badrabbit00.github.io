@@ -363,7 +363,7 @@ color: #333; /* Темный текст для желтого фона */
   color: #000;
 }
 #custom-notification.info {
-background-color: #17a2b8; /* Голубой */
+background-color: rgb(206, 90, 0);
 }
 
 
