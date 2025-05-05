@@ -1,279 +1,459 @@
+/* ---- СУЩЕСТВУЮЩИЕ СТИЛИ (ОСТАЮТСЯ) ---- */
+
 /* Контейнер формы записи */
 .booking-container {
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Заголовки */
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Добавим, чтобы на совсем маленьких экранах не прилипал к краям */
+  width: 90%; 
+}
+
+/* Заголовки */
+h2, h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem; /* Немного уменьшим для мобильных */
+}
+h3 {
+  font-size: 1.3rem;
+}
+
+/* Группы полей */
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+  font-size: 0.9rem; /* Немного уменьшим */
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Важно для width: 100% */
+  font-size: 1rem; /* Убедимся, что размер шрифта удобен */
+}
+.form-group input:focus {
+  outline: none;
+  border-color: rgb(206, 90, 0);
+  box-shadow: 0 0 5px rgba(206, 90, 0, 0.5);
+}
+
+/* Контейнер выбора даты */
+.date-selection-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Немного уменьшим gap */
+  flex-wrap: wrap; /* Оставляем перенос */
+  margin-bottom: 20px; /* Добавим отступ снизу */
+}
+
+/* Отображение выбранного слота */
+#selectedSlotDisplay {
+  color: rgb(206, 90, 0);
+  font-weight: bold;
+  font-size: 0.9rem; /* Немного уменьшим */
+  flex-basis: 100%; /* Заставим переноситься на новую строку на маленьких экранах */
+  margin-top: 5px; /* Небольшой отступ сверху при переносе */
+}
+
+/* Базовые стили для кнопок (Оставляем, как есть, если buttons.css их не переопределяет) */
+.booking-container .btn-grd {
+  position: relative;
+  background: rgb(206, 90, 0);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  padding: 0.8rem 1.2rem; /* Немного уменьшим padding */
+  font-size: 0.9rem; /* Немного уменьшим шрифт */
+  transition: background-color 0.2s ease;
+  width: 100%; /* Кнопки на всю ширину на мобильных */
+  box-sizing: border-box; /* Учитываем padding/border */
+  text-align: center;
+}
+/* Для кнопки выбора даты можно оставить авто-ширину */
+.date-selection-container .btn-grd {
+ width: auto; 
+}
+
+.booking-container .btn-grd:hover {
+  background: rgba(206, 90, 0, 0.9);
+}
+
+/* --- СТИЛИ МОДАЛЬНОГО ОКНА (ОБЪЕДИНЕНЫ ИЗ ДВУХ ФАЙЛОВ) --- */
+
+.modal {
+  /* display: none; */ /* Управляется JS, не нужно здесь */
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex; /* Управляется JS, но flex - базовое состояние для отображения */
+  justify-content: center;
+  align-items: center;
+  /* Добавим плавности появления */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+/* Класс для показа модалки */
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto; /* Центрирование */
+  padding: 15px; /* Уменьшим паддинг по умолчанию */
+  border: 1px solid #888;
+  border-radius: 8px;
+  width: 95%; /* Увеличим ширину по умолчанию для мобильных */
+  max-width: 600px; /* Ограничим максимальную ширину */
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* Добавим плавности для масштабирования */
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.modal.visible .modal-content {
+   transform: scale(1);
+}
+
+
+/* Кнопка закрыть */
+.close-btn {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px; /* Ближе к краю */
+  font-size: 24px; /* Чуть меньше */
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10; /* Поверх всего в модалке */
+}
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Заголовок календаря */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 1.4rem; /* Чуть меньше */
+  cursor: pointer;
+  color: rgb(206, 90, 0);
+  padding: 5px; /* Добавим область клика */
+}
+#monthYear {
+  font-size: 1.1em; /* Чуть меньше */
+  font-weight: bold;
+  text-align: center;
+  flex-grow: 1;
+  color: rgb(206, 90, 0);
+  margin: 0 10px; /* Отступы от кнопок */
+}
+
+/* Дни недели и сетка */
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px; /* Уменьшим gap */
+  margin-bottom: 10px;
+}
+.calendar-weekdays div {
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.8rem; /* Уменьшим шрифт дней недели */
+}
+.calendar-grid {
+  min-height: auto; /* Уберем фиксированную высоту, пусть адаптируется */
+}
+
+/* Пустые ячейки */
+.empty-cell {
+  visibility: hidden;
+}
+
+/* Ячейки дней */
+.day-cell {
+  border: 1px solid #eee;
+  min-height: 75px; /* Уменьшим мин. высоту */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  position: relative;
+  padding-top: 18px; /* Добавим место сверху для номера дня */
+}
+.past-date {
+  background-color: #f8f9fa;
+}
+
+/* Номер дня */
+.date-number {
+  text-align: center; /* Центрируем номер */
+  padding: 2px;
+  font-size: 0.75em; /* Уменьшим */
+  position: absolute;
+  top: 2px;
+  left: 0; /* Позиционируем слева */
+  right: 0; /* И справа для центрирования */
+  color: #333;
+  font-weight: bold;
+}
+.past-date .date-number {
+   color: #adb5bd; /* Бледный цвет для прошедших дат */
+}
+
+
+/* Слоты */
+.slot {
+  /* flex-grow: 1; */ /* Уберем, чтобы высота зависела от контента */
+  border-top: 1px dashed #f0f0f0;
+  margin: 2px 3px; /* Уменьшим отступы */
+  padding: 3px; /* Уменьшим паддинг */
+  font-size: 0.7em; /* Уменьшим шрифт слотов */
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20px; /* Небольшая минимальная высота */
+  line-height: 1.2; /* Межстрочный интервал */
+}
+
+/* Hover для свободного слота */
+.day-cell:not(.past-date) .slot:hover {
+  background-color: rgba(206, 90, 0, 0.1);
+  border-color: rgba(206, 90, 0, 0.3);
+}
+
+/* Выбранный слот */
+.slot.selected {
+  background-color: rgb(206, 90, 0);
+  border: 1px solid rgb(206, 90, 0);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Занятый слот */
+.slot.occupied {
+  background-color: #ffdddd !important;
+  color: #dc3545 !important;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  pointer-events: none;
+  border-color: #f5c6cb !important;
+}
+
+/* Прошедшие слоты (внутри прошедшей даты) */
+.past-date .slot {
+  background-color: #e9ecef !important;
+  color: #6c757d !important;
+  text-decoration: none;
+  border-color: #dee2e6 !important;
+  cursor: not-allowed; /* Добавим курсор */
+  pointer-events: none; /* Убедимся, что клик не работает */
+}
+
+/* Подвал модалки */
+.modal-footer {
+  margin-top: 15px; /* Уменьшим отступ */
+  text-align: center; /* Центрируем кнопку на мобильных */
+}
+.modal-footer .btn-grd {
+   width: auto; /* Вернем авто-ширину кнопке "Выбрать" */
+   padding: 0.8rem 1.5rem; /* Паддинг для кнопки Выбрать */
+}
+
+
+/* --- СТИЛИ ДЛЯ УВЕДОМЛЕНИЙ (НОВЫЕ) --- */
+#custom-notification {
+position: fixed;
+bottom: 20px; /* Позиция внизу */
+left: 50%; /* Центрируем */
+transform: translateX(-50%); /* Точное центрирование */
+background-color: #333;
+color: white;
+padding: 12px 20px;
+border-radius: 6px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+z-index: 2000; /* Выше модального окна */
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.4s ease, visibility 0.4s ease, bottom 0.4s ease;
+display: flex;
+align-items: center;
+gap: 15px;
+max-width: 90%; /* Ограничим ширину */
+}
+
+#custom-notification.visible {
+opacity: 1;
+visibility: visible;
+bottom: 30px; /* Слегка приподнимаем при появлении */
+}
+
+#custom-notification p {
+margin: 0;
+font-size: 0.9rem;
+line-height: 1.4;
+}
+
+#custom-notification .close-btn {
+background: none;
+border: none;
+color: rgba(255, 255, 255, 0.7);
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+padding: 0 5px;
+line-height: 1;
+position: static; /* Убираем absolute позиционирование */
+}
+#custom-notification .close-btn:hover {
+color: white;
+}
+
+/* Типы уведомлений */
+#custom-notification.success {
+background-color: #28a745; /* Зеленый */
+}
+#custom-notification.error {
+background-color: #dc3545; /* Красный */
+}
+#custom-notification.warning {
+background-color: #ffc107; /* Желтый */
+color: #333; /* Темный текст для желтого фона */
+}
+#custom-notification.warning .close-btn {
+  color: rgba(0, 0, 0, 0.6);
+}
+#custom-notification.warning .close-btn:hover {
+  color: #000;
+}
+#custom-notification.info {
+background-color: #17a2b8; /* Голубой */
+}
+
+
+/* --- МЕДИА-ЗАПРОСЫ ДЛЯ БОЛЬШИХ ЭКРАНОВ --- */
+@media (min-width: 768px) {
   h2, h3 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+      font-size: 1.8rem; /* Возвращаем размер заголовков */
   }
-  
-  /* Группы полей */
-  .form-group {
-    margin-bottom: 15px;
+   h3 {
+      font-size: 1.5rem;
   }
   .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+      font-size: 1rem;
   }
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group input[type="tel"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  .form-group input:focus {
-    outline: none;
-    border-color: rgb(206, 90, 0);
-    box-shadow: 0 0 5px rgba(206, 90, 0, 0.5);
-  }
-  
-  /* Контейнер выбора даты */
-  .date-selection-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  
-  /* Отображение выбранного слота */
   #selectedSlotDisplay {
-    color: rgb(206, 90, 0);
-    font-weight: bold;
+      font-size: 1rem;
+      flex-basis: auto; /* Возвращаем авто-ширину */
+       margin-top: 0;
   }
-  
-  /* Базовые стили для кнопок */
-  /* Если у вас есть buttons.css, они должны переопределить это */
-  .booking-container .btn-grd {
-    position: relative;
-    background: rgb(206, 90, 0);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.2s ease;
-  }
-  .booking-container .btn-grd:hover {
-    background: rgba(206, 90, 0, 0.9);
-  }
-  
-  /* Модальное окно */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .modal .btn-grd {
-    background: rgb(206, 90, 0);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    transition: background-color 0.2s ease;
-  }
-  .modal .btn-grd:hover {
-    background: rgba(206, 90, 0, 0.9);
-  }
-  
+   .booking-container .btn-grd {
+       width: auto; /* Возвращаем авто-ширину кнопкам */
+       font-size: 1rem;
+        padding: 1rem 1.5rem;
+   }
+   /* Если нужно, чтобы кнопка отправки была на всю ширину и на десктопе: */
+   /* #submitBtn { width: 100%; } */
+
   .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 700px;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 700px; /* Увеличим макс. ширину для десктопа */
+      padding: 20px; /* Вернем паддинг */
   }
-  
-  /* Кнопка закрыть */
-  .close-btn {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 1;
-  }
-  .close-btn:hover,
-  .close-btn:focus {
-    color: black;
-    text-decoration: none;
-  }
-  
-  /* Заголовок календаря */
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
+   .close-btn {
+       font-size: 28px;
+       right: 20px;
+   }
   .calendar-header button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: rgb(206, 90, 0);
+      font-size: 1.5rem;
   }
   #monthYear {
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    flex-grow: 1;
-    color: rgb(206, 90, 0);
+      font-size: 1.2em;
   }
-  
-  /* Дни недели и сетка */
-  .calendar-weekdays,
+   .calendar-weekdays {
+       gap: 5px;
+   }
+   .calendar-weekdays div {
+        font-size: 0.9rem;
+   }
   .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin-bottom: 10px;
+      gap: 5px; /* Вернем gap */
+      /* Можно вернуть min-height если нужно */
+      /* min-height: 300px; */
   }
-  .calendar-weekdays div {
-    text-align: center;
-    font-weight: bold;
-    color: #555;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
+   .day-cell {
+      min-height: 90px; /* Вернем мин. высоту */
+      padding-top: 0; /* Убираем паддинг для номера */
+   }
+    .date-number {
+      text-align: right; /* Вернем выравнивание */
+      padding: 3px 5px;
+      font-size: 0.8em;
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      left: auto; /* Сбрасываем left */
+      font-weight: normal; /* Возвращаем нормальный вес */
   }
-  .calendar-grid {
-    min-height: 300px;
-  }
-  
-  /* Пустые ячейки */
-  .empty-cell {
-    visibility: hidden;
-  }
-  
-  /* Ячейки дней */
-  .day-cell {
-    border: 1px solid #eee;
-    min-height: 90px;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    position: relative;
-  }
-  .past-date {
-    background-color: #f8f9fa;
-  }
-  
-  /* Номер дня */
-  .date-number {
-    text-align: right;
-    padding: 3px 5px;
-    font-size: 0.8em;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    color: #333;
-  }
-  
-  /* Слоты */
   .slot {
-    flex-grow: 1;
-    border-top: 1px dashed #f0f0f0;
-    margin: 2px 4px;
-    padding: 4px;
-    font-size: 0.75em;
-    border-radius: 3px;
-    cursor: pointer;
-    text-align: center;
-    background-color: #f9f9f9;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      margin: 2px 4px;
+      padding: 4px;
+      font-size: 0.75em;
+       min-height: 25px;
   }
-  
-  /* Hover для свободного слота */
-  .day-cell:not(.past-date) .slot:hover {
-    background-color: rgba(206, 90, 0, 0.1);
-    border-color:    rgba(206, 90, 0, 0.3);
-  }
-  
-  /* Выбранный слот */
-  .slot.selected {
-    background-color: rgb(206, 90, 0);
-    border: 1px solid rgb(206, 90, 0);
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  /* Занятый слот */
-  .slot.occupied {
-    background-color: #ffdddd !important;
-    color: #dc3545 !important;
-    cursor: not-allowed;
-    text-decoration: line-through;
-    pointer-events: none;
-    border-color: #f5c6cb !important;
-  }
-  
-  /* Прошедшие слоты (внутри прошедшей даты) */
-  .past-date .slot {
-    background-color: #e9ecef !important;
-    color: #6c757d !important;
-    text-decoration: none;
-    border-color: #dee2e6 !important;
-  }
-  
-  /* Подтверждённый текст */
-  .confirmed-text {
-    margin: 0.5rem 0;
-    font-weight: bold;
-    color: rgb(206, 90, 0);
-  }
-  
-  /* Подвал модалки */
   .modal-footer {
-    margin-top: 20px;
-    text-align: right;
+      text-align: right; /* Выравниваем кнопку справа */
+       margin-top: 20px;
   }
-  
-  /* Адаптив */
-  @media (max-width: 768px) {
-    .modal-content {
-      width: 95%;
-      padding: 15px;
-    }
-    .slot {
-      font-size: 0.7em;
-      padding: 3px;
-    }
-    .day-cell {
-      min-height: 80px;
-    }
+
+  #custom-notification {
+      max-width: 400px; /* Ширина уведомления на десктопе */
+       bottom: 30px;
+       left: auto; /* Убираем центрирование */
+       right: 30px; /* Позиция справа */
+       transform: none; /* Убираем transform */
   }
-  
+   #custom-notification.visible {
+      bottom: 30px; /* Не нужно анимировать bottom */
+  }
+  #custom-notification p {
+      font-size: 1rem;
+  }
+
+}
