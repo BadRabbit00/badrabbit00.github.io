@@ -1,209 +1,321 @@
-/* calendar css */
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-}
-.modal-content {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 1200px; /* This max-width might be too large for some small screens */
-    box-sizing: border-box; /* Added for better padding control */
-}
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    color: black;
-}
-.calendar-header button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-    gap: .5rem;
-    margin-bottom: 1rem;
-}
-.calendar-grid > div {
-    text-align: center;
-    color: black;
-}
-.day-cell {
-    border: 1px solid #ccc;
-    padding: .5rem;
-    border-radius: 4px;
-    display: flex; /* Added for better slot layout */
-    flex-direction: column; /* Added for better slot layout */
-    position: relative; /* Needed for absolute date number positioning */
-    min-height: 80px; /* Ensure a minimum height */
-}
-.day-cell .date-number {
-    font-weight: bold;
-    /* margin-bottom: .5rem; /* Removed as we are using absolute positioning */
-    position: absolute; /* Position number at the top right */
-    top: 5px;
-    right: 5px;
-    font-size: 0.8em; /* Smaller font for the number */
-}
-.slot {
-    cursor: pointer;
-    padding: .25rem;
-    margin-bottom: .25rem; /* Kept for spacing between slots */
-    border-radius: 4px;
-    font-size: .9rem;
-    flex-grow: 1; /* Allow slots to take available space */
-    display: flex; /* Center slot content */
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* Ensure text is centered */
-    word-break: break-word; /* Prevent long text from overflowing */
-}
-.slot:hover {
-    background: #eee;
-}
-.slot.occupied {
-    background: red;
-    color: #fff;
-    cursor: not-allowed;
-}
-.slot.selected {
-    background: rgb(206, 90, 0);
-    color: #fff;
+.modal {  
+  display: none;  
+  position: fixed;  
+  inset: 0;  
+  background: rgba(0,0,0,0.5);  
+  justify-content: center;  
+  align-items: center;  
+}  
+.modal-content {  
+  background: #fff;  
+  padding: 1rem;  
+  border-radius: 8px;  
+  width: 90%;  
+  max-width: 1200px;  
+}  
+.calendar-header {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+  margin-bottom: 1rem;  
+  color: black;  
+}  
+.calendar-header button {  
+  background: none;  
+  border: none;  
+  font-size: 1.5rem;  
+  cursor: pointer;  
+}  
+.calendar-grid {  
+  display: grid;  
+  grid-template-columns: repeat(7,1fr);  
+  gap: .5rem;  
+  margin-bottom: 1rem;  
+}  
+.calendar-grid > div {  
+  text-align: center;  
+  color: black;  
+}  
+.day-cell {  
+  border: 1px solid #ccc;  
+  padding: .5rem;  
+  border-radius: 4px;  
+}  
+.day-cell .date-number {  
+  font-weight: bold;  
+  margin-bottom: .5rem;  
+}  
+.slot {  
+  cursor: pointer;  
+  padding: .25rem;  
+  margin-bottom: .25rem;  
+  border-radius: 4px;  
+  font-size: .9rem;  
+}  
+.slot:hover {  
+  background: #eee;  
+}  
+.slot.occupied {  
+  background: red;  
+  color: #fff;  
+  cursor: not-allowed;  
+}  
+.slot.selected {  
+  background: rgb(206, 90, 0);  
+  color: #fff;  
+}  
+/* Контейнер формы записи */  
+.booking-container {  
+  max-width: 500px;  
+  margin: 30px auto;  
+  padding: 20px;  
+  background-color: #fff;  
+  border-radius: 8px;  
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  
+}  
+/* Заголовки */  
+h2, h3 {  
+  text-align: center;  
+  color: #333;  
+  margin-bottom: 20px;  
+}  
+/* Группы полей */  
+.form-group {  
+  margin-bottom: 15px;  
+}  
+.form-group label {  
+  display: block;  
+  margin-bottom: 5px;  
+  font-weight: bold;  
+  color: #555;  
+}  
+.form-group input[type="text"],  
+.form-group input[type="email"],  
+.form-group input[type="tel"] {  
+  width: 100%;  
+  padding: 10px;  
+  border: 1px solid #ccc;  
+  border-radius: 4px;  
+  box-sizing: border-box;  
+}  
+.form-group input:focus {  
+  outline: none;  
+  border-color: rgb(206, 90, 0);  
+  box-shadow: 0 0 5px rgba(206, 90, 0, 0.5);  
+}  
+/* Контейнер выбора даты */  
+.date-selection-container {  
+  display: flex;  
+  align-items: center;  
+  gap: 15px;  
+  flex-wrap: wrap;  
+}  
+/* Отображение выбранного слота */  
+#selectedSlotDisplay {  
+  color: rgb(206, 90, 0);  
+  font-weight: bold;  
+}  
+/* Базовые стили для кнопок */  
+.booking-container .btn-grd {  
+  position: relative;  
+  background: rgb(206, 90, 0);  
+  border: none;  
+  border-radius: 8px;  
+  color: white;  
+  cursor: pointer;  
+  outline: none;  
+  overflow: hidden;  
+  padding: 1rem 1.5rem;  
+  font-size: 1rem;  
+  transition: background-color 0.2s ease;  
+}  
+.booking-container .btn-grd:hover {  
+  background: rgba(206, 90, 0, 0.9);  
+}  
+.modal {  
+  display: none;  
+  position: fixed;  
+  z-index: 1000;  
+  inset: 0;  
+  background-color: rgba(0, 0, 0, 0.6);  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+}  
+.modal .btn-grd {  
+  background: rgb(206, 90, 0);  
+  border: none;  
+  border-radius: 8px;  
+  color: white;  
+  cursor: pointer;  
+  outline: none;  
+  overflow: hidden;  
+  padding: 1rem 1.5rem;  
+  font-size: 1rem;  
+  transition: background-color 0.2s ease;  
+}  
+.modal .btn-grd:hover {  
+  background: rgba(206, 90, 0, 0.9);  
+}  
+.modal-content {  
+  background-color: #fefefe;  
+  margin: auto;  
+  padding: 20px;  
+  border: 1px solid #888;  
+  border-radius: 8px;  
+  width: 90%;  
+  max-width: 700px;  
+  position: relative;  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  
+}  
+/* Кнопка закрыть */  
+.close-btn {  
+  color: #aaa;  
+  position: absolute;  
+  top: 10px;  
+  right: 20px;  
+  font-size: 28px;  
+  font-weight: bold;  
+  cursor: pointer;  
+  line-height: 1;  
+}  
+.close-btn:hover,  
+.close-btn:focus {  
+  color: black;  
+  text-decoration: none;  
+}  
+/* Заголовок календаря */  
+.calendar-header {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+  margin-bottom: 15px;  
+}  
+.calendar-header button {  
+  background: none;  
+  border: none;  
+  font-size: 1.5rem;  
+  cursor: pointer;  
+  color: rgb(206, 90, 0);  
+}  
+#monthYear {  
+  font-size: 1.2em;  
+  font-weight: bold;  
+  text-align: center;  
+  flex-grow: 1;  
+  color: rgb(206, 90, 0);  
+}  
+/* Дни недели и сетка */  
+.calendar-weekdays,  
+.calendar-grid {  
+  display: grid;  
+  grid-template-columns: repeat(7, 1fr);  
+  gap: 5px;  
+  margin-bottom: 10px;  
+}  
+.calendar-weekdays div {  
+  text-align: center;  
+  font-weight: bold;  
+  color: #555;  
+  padding-bottom: 5px;  
+  border-bottom: 1px solid #eee;  
+}  
+.calendar-grid {  
+  min-height: 300px;  
+}  
+/* Пустые ячейки */  
+.empty-cell {  
+  visibility: hidden;  
+}  
+/* Ячейки дней */  
+.day-cell {  
+  border: 1px solid #eee;  
+  min-height: 90px;  
+  display: flex;  
+  flex-direction: column;  
+  background-color: #fff;  
+  position: relative;  
+}  
+.past-date {  
+  background-color: #f8f9fa;  
+}  
+/* Номер дня */  
+.date-number {  
+  text-align: right;  
+  padding: 3px 5px;  
+  font-size: 0.8em;  
+  position: absolute;  
+  top: 2px;  
+  right: 2px;  
+  color: #333;  
+}  
+/* Слоты */  
+.slot {  
+  flex-grow: 1;  
+  border-top: 1px dashed #f0f0f0;  
+  margin: 2px 4px;  
+  padding: 4px;  
+  font-size: 0.75em;  
+  border-radius: 3px;  
+  cursor: pointer;  
+  text-align: center;  
+  background-color: #f9f9f9;  
+  transition: background-color 0.2s ease, border-color 0.2s ease;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+}  
+/* Hover для свободного слота */  
+.day-cell:not(.past-date) .slot:hover {  
+  background-color: rgba(206, 90, 0, 0.1);  
+  border-color: rgba(206, 90, 0, 0.3);  
+}  
+/* Выбранный слот */  
+.slot.selected {  
+  background-color: rgb(206, 90, 0);  
+  border: 1px solid rgb(206, 90, 0);  
+  color: #fff;  
+  font-weight: bold;  
+}  
+/* Занятый слот */  
+.slot.occupied {  
+  background-color: #ffdddd !important;  
+  color: #dc3545 !important;  
+  cursor: not-allowed;  
+  text-decoration: line-through;  
+  pointer-events: none;  
+  border-color: #f5c6cb !important;  
+}  
+/* Прошедшие слоты (внутри прошедшей даты) */  
+.past-date .slot {  
+  background-color: #e9ecef !important;  
+  color: #6c757d !important;  
+  text-decoration: none;  
+  border-color: #dee2e6 !important;  
+}  
+/* Подтверждённый текст */  
+.confirmed-text {  
+  margin: 0.5rem 0;  
+  font-weight: bold;  
+  color: rgb(206, 90, 0);  
+}  
+/* Подвал модалки */  
+.modal-footer {  
+  margin-top: 20px;  
+  text-align: right;  
+}  
+/* Адаптив */  
+@media (max-width: 768px) {  
+  .modal-content {  
+    width: 95%;  
+    padding: 15px;  
+  }  
+  .slot {  
+    font-size: 0.7em;  
+    padding: 3px;  
+  }  
+  .day-cell {  
+    min-height: 80px;  
+  }  
 }
 
-/* Added styles based on contact-form.css and for better mobile layout */
-.calendar-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px; /* Match calendar-grid gap */
-    margin-bottom: 10px; /* Spacing below weekdays */
-}
-
-.calendar-weekdays div {
-    text-align: center;
-    font-weight: bold;
-    color: #555;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9em; /* Slightly smaller weekday font */
-}
-
-.empty-cell {
-    visibility: hidden;
-}
-
-.past-date {
-    background-color: #f8f9fa;
-}
-
-.slot.occupied {
-    background-color: #ffdddd !important;
-    color: #dc3545 !important;
-    cursor: not-allowed;
-    text-decoration: line-through;
-    pointer-events: none; /* Prevent clicks on occupied slots */
-    border-color: #f5c6cb !important;
-}
-
-.past-date .slot {
-    background-color: #e9ecef !important;
-    color: #6c757d !important;
-    text-decoration: none;
-    border-color: #dee2e6 !important;
-    cursor: not-allowed;
-    pointer-events: none; /* Prevent clicks on past slots */
-}
-
-.modal-footer {
-    margin-top: 20px;
-    text-align: right;
-}
-
-/* --- Mobile Optimization --- */
-@media (max-width: 768px) {
-    .modal-content {
-        padding: 0.8rem; /* Slightly less padding */
-        width: 95%; /* Take up more width on smaller screens */
-        max-width: none; /* Remove max-width constraint */
-    }
-
-    .calendar-header {
-        margin-bottom: 0.8rem; /* Slightly less margin */
-    }
-
-    .calendar-header button {
-        font-size: 1.2rem; /* Smaller buttons */
-    }
-
-    #monthYear {
-         font-size: 1em; /* Smaller month/year text */
-    }
-
-    .calendar-grid {
-        gap: 3px; /* Reduce gap */
-    }
-
-    .day-cell {
-        min-height: 70px; /* Reduce min height */
-        padding: 0.3rem; /* Reduce padding */
-    }
-
-    .day-cell .date-number {
-        top: 3px;
-        right: 3px;
-        font-size: 0.7em; /* Even smaller number font */
-    }
-
-    .slot {
-        padding: 0.15rem; /* Reduce slot padding */
-        margin-bottom: 0.15rem; /* Reduce slot margin */
-        font-size: 0.7em; /* Smaller slot text */
-        word-break: break-word; /* Ensure text wraps */
-    }
-
-    .calendar-weekdays div {
-        font-size: 0.8em; /* Smaller weekday text */
-        padding-bottom: 3px;
-    }
-
-    .modal-footer {
-        margin-top: 15px; /* Reduce margin */
-    }
-
-    /* Further refine slot text size if needed */
-    .slot span { /* If you wrap slot text in a span */
-        font-size: 0.7em;
-    }
-}
-
-/* Optional: Adjust modal background on very small screens for better contrast */
-@media (max-width: 480px) {
-    .modal {
-        background: rgba(0,0,0,0.7);
-    }
-     .modal-content {
-        padding: 0.6rem;
-     }
-     .calendar-grid {
-        gap: 2px;
-     }
-     .day-cell {
-        min-height: 60px;
-        padding: 0.2rem;
-     }
-      .slot {
-        padding: 0.1rem;
-        margin-bottom: 0.1rem;
-        font-size: 0.65em;
-     }
-}
