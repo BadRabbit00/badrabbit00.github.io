@@ -1,209 +1,209 @@
 /* calendar css */
 .modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
 }
 .modal-content {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 1200px; /* This max-width might be too large for some small screens */
-  box-sizing: border-box; /* Added for better padding control */
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1200px; /* This max-width might be too large for some small screens */
+    box-sizing: border-box; /* Added for better padding control */
 }
 .calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: black;
 }
 .calendar-header button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 .calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7,1fr);
-  gap: .5rem;
-  margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: .5rem;
+    margin-bottom: 1rem;
 }
 .calendar-grid > div {
-  text-align: center;
-  color: black;
+    text-align: center;
+    color: black;
 }
 .day-cell {
-  border: 1px solid #ccc;
-  padding: .5rem;
-  border-radius: 4px;
-  display: flex; /* Added for better slot layout */
-  flex-direction: column; /* Added for better slot layout */
-  position: relative; /* Needed for absolute date number positioning */
-  min-height: 80px; /* Ensure a minimum height */
+    border: 1px solid #ccc;
+    padding: .5rem;
+    border-radius: 4px;
+    display: flex; /* Added for better slot layout */
+    flex-direction: column; /* Added for better slot layout */
+    position: relative; /* Needed for absolute date number positioning */
+    min-height: 80px; /* Ensure a minimum height */
 }
 .day-cell .date-number {
-  font-weight: bold;
-  /* margin-bottom: .5rem; /* Removed as we are using absolute positioning */
-  position: absolute; /* Position number at the top right */
-  top: 5px;
-  right: 5px;
-  font-size: 0.8em; /* Smaller font for the number */
+    font-weight: bold;
+    /* margin-bottom: .5rem; /* Removed as we are using absolute positioning */
+    position: absolute; /* Position number at the top right */
+    top: 5px;
+    right: 5px;
+    font-size: 0.8em; /* Smaller font for the number */
 }
 .slot {
-  cursor: pointer;
-  padding: .25rem;
-  margin-bottom: .25rem; /* Kept for spacing between slots */
-  border-radius: 4px;
-  font-size: .9rem;
-  flex-grow: 1; /* Allow slots to take available space */
-  display: flex; /* Center slot content */
-  justify-content: center;
-  align-items: center;
-  text-align: center; /* Ensure text is centered */
-  word-break: break-word; /* Prevent long text from overflowing */
+    cursor: pointer;
+    padding: .25rem;
+    margin-bottom: .25rem; /* Kept for spacing between slots */
+    border-radius: 4px;
+    font-size: .9rem;
+    flex-grow: 1; /* Allow slots to take available space */
+    display: flex; /* Center slot content */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Ensure text is centered */
+    word-break: break-word; /* Prevent long text from overflowing */
 }
 .slot:hover {
-  background: #eee;
+    background: #eee;
 }
 .slot.occupied {
-  background: red;
-  color: #fff;
-  cursor: not-allowed;
+    background: red;
+    color: #fff;
+    cursor: not-allowed;
 }
 .slot.selected {
-  background: rgb(206, 90, 0);
-  color: #fff;
+    background: rgb(206, 90, 0);
+    color: #fff;
 }
 
 /* Added styles based on contact-form.css and for better mobile layout */
 .calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px; /* Match calendar-grid gap */
-  margin-bottom: 10px; /* Spacing below weekdays */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px; /* Match calendar-grid gap */
+    margin-bottom: 10px; /* Spacing below weekdays */
 }
 
 .calendar-weekdays div {
-  text-align: center;
-  font-weight: bold;
-  color: #555;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #eee;
-  font-size: 0.9em; /* Slightly smaller weekday font */
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em; /* Slightly smaller weekday font */
 }
 
 .empty-cell {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .past-date {
-  background-color: #f8f9fa;
+    background-color: #f8f9fa;
 }
 
 .slot.occupied {
-  background-color: #ffdddd !important;
-  color: #dc3545 !important;
-  cursor: not-allowed;
-  text-decoration: line-through;
-  pointer-events: none; /* Prevent clicks on occupied slots */
-  border-color: #f5c6cb !important;
+    background-color: #ffdddd !important;
+    color: #dc3545 !important;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    pointer-events: none; /* Prevent clicks on occupied slots */
+    border-color: #f5c6cb !important;
 }
 
 .past-date .slot {
-  background-color: #e9ecef !important;
-  color: #6c757d !important;
-  text-decoration: none;
-  border-color: #dee2e6 !important;
-  cursor: not-allowed;
-  pointer-events: none; /* Prevent clicks on past slots */
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    text-decoration: none;
+    border-color: #dee2e6 !important;
+    cursor: not-allowed;
+    pointer-events: none; /* Prevent clicks on past slots */
 }
 
 .modal-footer {
-  margin-top: 20px;
-  text-align: right;
+    margin-top: 20px;
+    text-align: right;
 }
 
 /* --- Mobile Optimization --- */
 @media (max-width: 768px) {
-  .modal-content {
-      padding: 0.8rem; /* Slightly less padding */
-      width: 95%; /* Take up more width on smaller screens */
-      max-width: none; /* Remove max-width constraint */
-  }
+    .modal-content {
+        padding: 0.8rem; /* Slightly less padding */
+        width: 95%; /* Take up more width on smaller screens */
+        max-width: none; /* Remove max-width constraint */
+    }
 
-  .calendar-header {
-      margin-bottom: 0.8rem; /* Slightly less margin */
-  }
+    .calendar-header {
+        margin-bottom: 0.8rem; /* Slightly less margin */
+    }
 
-  .calendar-header button {
-      font-size: 1.2rem; /* Smaller buttons */
-  }
+    .calendar-header button {
+        font-size: 1.2rem; /* Smaller buttons */
+    }
 
-  #monthYear {
-       font-size: 1em; /* Smaller month/year text */
-  }
+    #monthYear {
+         font-size: 1em; /* Smaller month/year text */
+    }
 
-  .calendar-grid {
-      gap: 3px; /* Reduce gap */
-  }
+    .calendar-grid {
+        gap: 3px; /* Reduce gap */
+    }
 
-  .day-cell {
-      min-height: 70px; /* Reduce min height */
-      padding: 0.3rem; /* Reduce padding */
-  }
+    .day-cell {
+        min-height: 70px; /* Reduce min height */
+        padding: 0.3rem; /* Reduce padding */
+    }
 
-  .day-cell .date-number {
-      top: 3px;
-      right: 3px;
-      font-size: 0.7em; /* Even smaller number font */
-  }
+    .day-cell .date-number {
+        top: 3px;
+        right: 3px;
+        font-size: 0.7em; /* Even smaller number font */
+    }
 
-  .slot {
-      padding: 0.15rem; /* Reduce slot padding */
-      margin-bottom: 0.15rem; /* Reduce slot margin */
-      font-size: 0.7em; /* Smaller slot text */
-      word-break: break-word; /* Ensure text wraps */
-  }
+    .slot {
+        padding: 0.15rem; /* Reduce slot padding */
+        margin-bottom: 0.15rem; /* Reduce slot margin */
+        font-size: 0.7em; /* Smaller slot text */
+        word-break: break-word; /* Ensure text wraps */
+    }
 
-  .calendar-weekdays div {
-      font-size: 0.8em; /* Smaller weekday text */
-      padding-bottom: 3px;
-  }
+    .calendar-weekdays div {
+        font-size: 0.8em; /* Smaller weekday text */
+        padding-bottom: 3px;
+    }
 
-  .modal-footer {
-      margin-top: 15px; /* Reduce margin */
-  }
+    .modal-footer {
+        margin-top: 15px; /* Reduce margin */
+    }
 
-  /* Further refine slot text size if needed */
-  .slot span { /* If you wrap slot text in a span */
-      font-size: 0.7em;
-  }
+    /* Further refine slot text size if needed */
+    .slot span { /* If you wrap slot text in a span */
+        font-size: 0.7em;
+    }
 }
 
 /* Optional: Adjust modal background on very small screens for better contrast */
 @media (max-width: 480px) {
-  .modal {
-      background: rgba(0,0,0,0.7);
-  }
-   .modal-content {
-      padding: 0.6rem;
-   }
-   .calendar-grid {
-      gap: 2px;
-   }
-   .day-cell {
-      min-height: 60px;
-      padding: 0.2rem;
-   }
-    .slot {
-      padding: 0.1rem;
-      margin-bottom: 0.1rem;
-      font-size: 0.65em;
-   }
+    .modal {
+        background: rgba(0,0,0,0.7);
+    }
+     .modal-content {
+        padding: 0.6rem;
+     }
+     .calendar-grid {
+        gap: 2px;
+     }
+     .day-cell {
+        min-height: 60px;
+        padding: 0.2rem;
+     }
+      .slot {
+        padding: 0.1rem;
+        margin-bottom: 0.1rem;
+        font-size: 0.65em;
+     }
 }
