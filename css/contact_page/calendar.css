@@ -14,7 +14,8 @@
   height: auto;
   max-width: 1000px; 
   max-height:  80vh;
-}  
+}   
+
 .calendar-header {  
   display: flex;  
   justify-content: space-between;  
@@ -144,6 +145,21 @@ h2, h3 {
   justify-content: center;  
   align-items: center;  
 }  
+
+.modal-content {  
+  background-color: #fefefe;  
+  margin: auto;  
+  padding: 20px;  
+  border: 1px solid #888;  
+  border-radius: 8px;  
+  width: 90%;  
+  height: auto;
+  max-width: 1000px; 
+  max-height:  80vh;
+  position: relative;  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  
+} 
+
 .modal .btn-grd {  
   background: rgb(206, 90, 0);  
   border: none;  
@@ -159,17 +175,7 @@ h2, h3 {
 .modal .btn-grd:hover {  
   background: rgba(206, 90, 0, 0.9);  
 }  
-.modal-content {  
-  background-color: #fefefe;  
-  margin: auto;  
-  padding: 20px;  
-  border: 1px solid #888;  
-  border-radius: 8px;  
-  width: 90%;  
-  max-width: 700px;  
-  position: relative;  
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  
-}  
+
 /* Кнопка закрыть */  
 .close-btn {  
   color: #aaa;  
